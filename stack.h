@@ -30,6 +30,8 @@ Includes
 #ifndef __STACK_H__
 #define __STACK_H__
 
+#include "trap.h"
+
 /*
 ******************************************************************************
 Private Constants
@@ -45,12 +47,6 @@ typedef enum e_stack_policy {
   e_lifo = 0,
   e_fifo
 } e_stack_policy_t;
-
-typedef enum stack_exception {
-  e_stackoverflow    = 100,
-  e_stackunderflow   = 200,
-  e_stackoutofmemory = 300
-} stack_exception_t;
 
 /*
 ******************************************************************************

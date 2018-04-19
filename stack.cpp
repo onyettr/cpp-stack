@@ -30,6 +30,7 @@ Includes
 #include <iostream>
 #include <string.h>
 #include "stack.h"
+#include "trap.h"
 
 using namespace std;
 
@@ -74,28 +75,6 @@ Exported Global variables
 Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
-void Thrower(stack_exception_t exp) {
-#if defined (EXCEPTION)
-  if (exp == e_stackoverflow ) {
-    throw new StackOverFlowExcep();  
-  } else if (exp == e_stackunderflow) {
-    throw new StackUnderFlowExcep();  
-  } else if (exp == e_stackoutofmemory) {
-    throw new StackOutofMemoryExcep();  
-  }
-#else
-  cout << "ouch something bad went on = ";
-  if (exp == e_stackoverflow ) {
-    cout << "StackOverFlowExcep";
-  } else if (exp == e_stackunderflow) {
-    cout << "StackUnderFlowExcep";
-  } else if (exp == e_stackoutofmemory) {
-    cout << "StackOutofMemoryExcep()";
-  }
-  
-  cout << endl;
-#endif
-}
 
 // Constructor time
 Stack::Stack(int elements) {

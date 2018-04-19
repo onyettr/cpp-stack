@@ -231,7 +231,7 @@ static BOOL Eval(char string[], long int *result)
   int offset = 0;
 
   *result = 0L;
-  base = 16;  /* Assumes HEX Mode */
+  base = 10;  /* 10 assumes DEC, 16 Assumes HEX Mode */
 
   /* Skip any white space */
   for (Ptr=0; isspace(string[Ptr]); Ptr++);
@@ -282,10 +282,16 @@ static void tt_push (int argc, char *argv[])
   if ( argc == 1 ) {
     Eval ( argv[0], &data);
     cout << "PUSH " << data << endl;
-    gStack->push(data);    
+
+    if ( gStack != NULL) {
+      gStack->push(data);
+    } else {
+    	cout << "PUSH Fail no create called" << endl;
+    }
   }
-  else
+  else {
     cout << "PUSH what?" << endl;
+  }
 }
 
 static void tt_create (int argc, char *argv[])
@@ -295,9 +301,12 @@ static void tt_create (int argc, char *argv[])
   if ( argc == 1 ) {
     Eval ( argv[0], &size);
 
-    gStack = new Stack(size);
-
-    cout << "CREATE " << size << endl;
+    if ( gStack == NULL ) {
+      gStack = new Stack(size);
+      cout << "CREATE " << size << endl;      
+    } else {
+      cout << "DELETE current stack please!" << endl;
+    }
   }
   else {
     cout << "create a stack: No size provided, didnt create" << endl;
@@ -308,6 +317,8 @@ static void tt_delete (int argc, char *argv[])
 {
   cout << "delete a stack" << endl;
   gStack->StackEmpty();
+
+  delete[] gStack;
 }
 
 static void tt_dump   (int argc, char *argv[])
