@@ -219,12 +219,12 @@ int test_run ( void ) {
   try {
 #endif
     error_code = test01();    /* Run one of the tests */
-    error_code = test02();    /* Run one of the tests */
-    error_code = test03();    /* Run one of the tests */
-    error_code = test04();    /* Run one of the tests */
-    error_code = test05();    /* Run one of the tests */
-    error_code = test06();    /* Run one of the tests */
-    error_code = test07();    /* Run one of the tests */
+    error_code |= test02();    /* Run one of the tests */
+    error_code |= test03();    /* Run one of the tests */
+    error_code |= test04();    /* Run one of the tests */
+    error_code |= test05();    /* Run one of the tests */
+    error_code |= test06();    /* Run one of the tests */
+    error_code |= test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
     } catch(int e) {
     cout << "ouch something bad went on = " << e << endl;

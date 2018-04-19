@@ -320,20 +320,16 @@ static void tt_dump   (int argc, char *argv[])
 
 static void tt_peek   (int argc, char *argv[])
 { 
-  int result;
-
   if ( gStack != NULL) {
-    result = gStack->peek();
+    int result = gStack->peek();
     cout << "peek " << result << endl;
   }
 }
 
 static void tt_pop (int argc, char *argv[])
 {
-  long int handle;
-
   if (gStack != NULL ) {
-    handle = gStack->pop();
+    long int handle = gStack->pop();
     cout << "POP " << handle << endl;
   }
 }
