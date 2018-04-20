@@ -10,7 +10,7 @@ CHECK_FLAGS	= --language=c++ --enable=all
 # -DDEBUG_TRACE	Will turn on deep trace per function
 # -DEXCEPTION	Will use the real exceptions with the 'try' that's in the test harness
 #CFLAGS += -DDEBUG_TRACE
-CFLAGS += -DEXCEPTION
+#CFLAGS += -DEXCEPTION
 
 OBJS  = main.o stack.o test01.o poortool.o trap.o
 

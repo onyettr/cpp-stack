@@ -1,24 +1,8 @@
-/*
- *****************************************************************************
- * 
- * MODULE: C++ Programming Examples
- *
- * $Header: $
- * $Archive:$
- * 
- * $Workfile: $
- *
- * $Author: Onyettr $
- *
- * NAME: 
- * EMAIL:
- *
- * PURPOSE:
- * 
- * $Revision:$
- * $History: $
- *
- ***************************************************************************** 
+/**
+ *	@file    main.cpp
+ *	@brief   simple c++ stack main harness
+ *	@author
+ *	@note	
  */
 
 /*
@@ -74,6 +58,17 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
+/**
+ * @function  int main(void)
+ *
+ * @brief     entry point
+ *
+ * @param[in] None
+ *
+ * @return    None
+ *
+ * @note      Entry point
+ */
 int main ( void )
 {
   // Sign on

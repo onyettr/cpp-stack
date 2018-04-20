@@ -1,25 +1,8 @@
-/*
- *****************************************************************************
- * 
- * MODULE: C++ Programming Examples
- *
- * $Header: $
- * $Archive:$
- * 
- * $Workfile: $
- *
- * $Author: Onyettr $
- *
- * NAME: Richard Onyett 
- * EMAIL: 
- *
- * PURPOSE: Simple Stack Class implementation
- *
- * 
- * $Revision:$
- * $History: $
- *
- ***************************************************************************** 
+/**
+ *	@file    stack.cpp
+ *	@brief   simple c++ stack implementation
+ *	@author
+ *	@note	
  */
 
 /*
@@ -76,7 +59,17 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
-// Constructor time
+/**
+ * @function  Stack::Stack(int elements)
+ *
+ * @brief     Stack ctor
+ *
+ * @param[in] int elements - number of stack elements to allocate
+ *
+ * @return    None
+ *
+ * @note      Entry point
+ */
 Stack::Stack(int elements) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: Basic Constructor called"  << endl;  
@@ -93,7 +86,17 @@ Stack::Stack(int elements) {
   }
 }
 
-// Destructor time
+/**
+ * @function  Stack::~Stack
+ *
+ * @brief     Stack dtor
+ *
+ * @param[in] none
+ *
+ * @return    None
+ *
+ * @note      dtor
+ */
 Stack::~Stack() {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: Basic Destructor called pStack = "  << pStack << endl;  
@@ -105,6 +108,17 @@ Stack::~Stack() {
   delete [] pStack;
 }
 
+/**
+ * @function  int Stack::pop(void) {
+ *
+ * @brief     Stack pop operation
+ *
+ * @param[in] none
+ *
+ * @return    Top of the stack (its an int)
+ *
+ * @note      
+ */
 int Stack::pop(void) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: pop  called"  << endl;  
@@ -120,7 +134,19 @@ int Stack::pop(void) {
   return pStack[StackTop--];
 }
 
+/**
+ * @function  int Stack::peek(void)
+ *
+ * @brief     Stack peek operation
+ *
+ * @param[in] none
+ *
+ * @return    return Top of the stack (its an int)
+ *
+ * @note      
+ */
 int Stack::peek(void) {
+
   cout << "<" << this << ">TRACE: peek  called"  << endl;  
 
   if ( StackTop == -1) {
@@ -131,6 +157,17 @@ int Stack::peek(void) {
   return pStack[StackTop];
 }
     
+/**
+ * @function  void Stack::push(int element) {
+ *
+ * @brief     Stack push element
+ *
+ * @param[in] int element
+ *
+ * @return    none
+ *
+ * @note      
+ */
 void Stack::push(int element) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: push called"  << endl;  
@@ -146,6 +183,17 @@ void Stack::push(int element) {
   }
 }
 
+/**
+ * @function  bool Stack::isEmpty(void)
+ *
+ * @brief     Stack is stack empty?
+ *
+ * @param[in] none
+ *
+ * @return    TRUE is empty, FALSE otherwise
+ *
+ * @note      
+ */
 bool Stack::isEmpty(void) {
   bool stackEmpty = false;
   
@@ -156,6 +204,17 @@ bool Stack::isEmpty(void) {
   return stackEmpty;
 }
   
+/**
+ * @function  void Stack::StackEmpty(void) 
+ *
+ * @brief     Stack is set to empty
+ *
+ * @param[in] none
+ *
+ * @return    none
+ *
+ * @note      
+ */
 void Stack::StackEmpty(void) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: StackEmpty called"  << endl;  
@@ -164,6 +223,17 @@ void Stack::StackEmpty(void) {
   StackTop = -1;
 }
 
+/**
+ * @function  void Stack::StackDump(int num) 
+ *
+ * @brief     Stack output
+ *
+ * @param[in] int num  - deprecated for now, will allow for number of entries to be output. 
+ *
+ * @return    none
+ *
+ * @note      
+ */
 void Stack::StackDump(int num) {
 #if defined ( DEBUG_TRACE )
   cout << "StackDump: Size = " << StackMax << ", used = " << StackCount << ", Top = " << StackTop << endl;
