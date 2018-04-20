@@ -1,17 +1,8 @@
-/*
- *****************************************************************************
- * MODULE: ECHOSTAR OS-Shell
- *
- * FILE  : poortool.c
- *
- * AUTHOR: Richard Onyett 
- * EMAIL :
- *
- * PURPOSE:  Poor Version of Testtool :)
- *
- * $Revision: $
- * $History:  $
- *****************************************************************************
+/**
+ *	@file    poortool.cpp
+ *	@brief   simple command line monitor
+ *	@author
+ *	@note	
  */
 
 /*
@@ -68,7 +59,7 @@ Private Types
 Private variables (static)
 ******************************************************************************
 */
-static int base;                /* Radix for numbers         */
+static int base = 10;                /* Radix for numbers         */
 Stack  *gStack = (Stack*)NULL;                 
 
 /*
@@ -103,16 +94,17 @@ static void tt_help (int argc, char *argv[]);
 static BOOL GetCLI(void);
 void poortool_Init(void);
 
-/*
-------------------------------------------------------------------------------
- Name   : static int pollkey(void)
- Purpose: Look for a Keypress.
- In     : None
- Out    : int Key
- Errors :
- Note   : 
-------------------------------------------------------------------------------
-*/
+/**
+ * @function  static int pollkey(void)
+ *
+ * @brief     test for a keypress
+ *
+ * @param[in] None
+ *
+ * @return    int
+ *
+ * @note      Waits for [ENTER] to be pressed
+ */
 static int pollkey(void)
 {
   char key;
@@ -136,18 +128,19 @@ static int pollkey(void)
   return key;
 }
 
-/*
-------------------------------------------------------------------------------
- Name   : static int io_read(unsigned char* prompt, char* buffer,long buflen)
- Purpose: Perform read of input
- In     : char *prompt -
-          char *buffer
-          int buflen
- Out    : 
- Errors :
- Note   : 
-------------------------------------------------------------------------------
-*/
+/**
+ * @function   static int io_read(uint8_t* prompt, char* buffer,long buflen)
+ *
+ * @brief      read input buffer from keyboard
+ *
+ * @param[in]  uint8_t *prompt  - String containing the prompt
+ * @param[out] char    *buffer  - Return string containing keypress entries
+ * @param[in]  uint32_t buflen  - length of return buffer
+ *
+ * @return    int
+ *
+ * @note      Gathers the keypresses
+ */
 static int io_read(unsigned char* prompt, char* buffer,long buflen)
 {
   int cnt = 0;
@@ -160,17 +153,18 @@ static int io_read(unsigned char* prompt, char* buffer,long buflen)
   return(cnt);
 }
 
-/*
-------------------------------------------------------------------------------
- Name   : static int match(char *str1,char *str2) 
- Purpose: String matches ??  
- In     : char *str1
-          char *str2
- Out    :
- Errors :
- Note   : 
-------------------------------------------------------------------------------
-*/
+/**
+ * @function   static BOOL match(uint8_t *str1,const uint8_t *str2)
+ *
+ * @brief      match two strings
+ *
+ * @param[in]  uint8_t *str1    - First string to compare agaisnt str2
+ * @param[in]  uint8_t *str2    - Compare to str1
+ *
+ * @return     BOOL - TRUE if there is a match, FALSE if not
+ *
+ * @note       Compares str1 with str2
+ */
 static BOOL match(char *str1,const char *str2)
 {
   int i;
@@ -178,25 +172,28 @@ static BOOL match(char *str1,const char *str2)
   for (i=0; i < (int)strlen(str2); i++)
   {
     if (str1[i] != str2[i] )
+    {
       return FALSE;
+    }
   }
 
   return(!(strncmp(str1,str2, strlen(str1))));
 }
 
-/*
-------------------------------------------------------------------------------
- Name   : static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
- Purpose: Get the command line inside of Buffer
- In     : char *Buffer - All of the commands
-          int  *cargc  - Number of Args
-          char *cargv  - The Args List
- Out    :
- Errors :
- Note   : Attempt to tokenize the Buffer and return as a set of Args,
-------------------------------------------------------------------------------
-*/
-static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
+/**
+ * @function   static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
+ *
+ * @brief      Get the command line from a string 
+ *
+ * @param[in]  uint8_t *Buffer  - Raw command line to parse
+ * @param[out] int     *cargc   - Return the number of arguments found
+ * @param[out] uint8_t *cargv[] - Each argument is placed into an entry
+ *
+ * @return     None
+ *
+ * @note       Takes a raw "command line" (buffer) and breaks it (tokenizes) into a set of arguments
+ */
+static void GetCommandLine(char *Buffer, int *cargc, char *cargv[])
 {
   char *Token;
   char *bPtr;
@@ -208,22 +205,24 @@ static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
   Token = strtok ( (char *)bPtr, SEPARATORS );   // Convert to arguments
   while ( Token != NULL )
   {
-    cargv[*cargc] = (char *)(Token);    // Copy Tokenised data into Array
-    (*cargc)++;
-    Token = strtok ( NULL, SEPARATORS );
+      cargv[*cargc] = (char *)(Token);    // Copy Tokenised data into Array
+      (*cargc)++;
+      Token = strtok ( NULL, SEPARATORS );
   }
 }
 
-/*
-------------------------------------------------------------------------------
- Name   : static int Eval(char string[], int *result) 
- Purpose: Convert the text string into dec, bin or hex.
- In     : char *string - Convert string
- Out    : int *result  - String as integer
- Errors :
- Note   : Assumes base 16. Change to 10,2 for Dec/Bin
-------------------------------------------------------------------------------
-*/
+/**
+ * @function   static BOOL Eval(char string[], long int *result)
+ *
+ * @brief      Convert the text string into dec, bin or hex.
+ *
+ * @param[in]  uint8_t string[] - Raw command line to convert
+ * @param[out] uint32_t *result - Returned numeric value
+ *
+ * @return     BOOL
+ *
+ * @note       Assumes base 16. Change to 10,2 for Dec/Bin, set the radix via the 'base' variable
+ */
 static BOOL Eval(char string[], long int *result)
 {
   int i = 0;
@@ -236,38 +235,41 @@ static BOOL Eval(char string[], long int *result)
   /* Skip any white space */
   for (Ptr=0; isspace(string[Ptr]); Ptr++);
 
-  /*
-  -- Validate input
-  */
+  /* Validate input */
   switch ( string[Ptr] )
   {
-    case '$':        /* HEX Mode */
-    {
-      i = Ptr+1;
-      for (Ptr=0; isspace(string[Ptr]); Ptr++);
-      Ptr++;
-      while ( string[Ptr] != '\0' )
-      {
-        if ( isxdigit(string[Ptr]) == 0 )
-          return FALSE;
-        Ptr++;
-      }
-      break;
-    }
+     case '$':        /* HEX Mode */
+     {
+         i = Ptr+1;
+         for (Ptr=0; isspace(string[Ptr]); Ptr++);
+         Ptr++;
+
+	 while ( string[Ptr] != '\0' )
+         {
+             if ( isxdigit(string[Ptr]) == 0 )
+             {
+                return FALSE;
+	     }
+             Ptr++;
+	 }
+	 break;
+     }
   }
 
   /*
-  -- Convert String
+  -- Convert String into integer value
   */
   while ( string[i] != '\0' )
   {
-    int temp;
-    temp = string[i]-'0';
-    if (string[i] >= 'A') temp -= ('A'-'9'-1);
-    if (string[i] >= 'a') temp -= ('a' - 'A');
-    if ((temp < base) && (temp >=0))
-      *result = (*result * base) + temp;
-    i++;
+      int temp;
+      temp = string[i]-'0';
+      if (string[i] >= 'A') temp -= ('A'-'9'-1);
+      if (string[i] >= 'a') temp -= ('a' - 'A');
+      if ((temp < base) && (temp >=0))
+      {
+          *result = (*result * base) + temp;
+      }
+      i++;
   }
 
   *result = *result + offset;
@@ -365,7 +367,7 @@ static void tt_help(int argc, char *argv[])
   printf("create                    create a stack - return handle\n");
   printf("delete <handle>           delete a stack                \n");
   printf("dump                      Show Stack                    \n");
-  printf("exit                      Quit from OS Monitor          \n");
+  printf("exit                      Quit from Monitor             \n");
 }
 
 /*
@@ -422,7 +424,7 @@ void poortool_init(void)
 {
   BOOL Going = true;
 
-  printf("Press ANY key for Poortool\n");
+  printf("Press [ENTER] key for Poortool\n");
   
   while (Going)
   {
