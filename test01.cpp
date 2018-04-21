@@ -1,24 +1,8 @@
-/*
- *****************************************************************************
- * 
- * MODULE: C++ Programming Examples
- *
- * $Header: $
- * $Archive:$
- * 
- * $Workfile: $
- *
- * $Author: Onyettr $
- *
- * NAME: Richard Onyett (STMicroelectronics,San Jose)
- * EMAIL: richard.onyett@st.com
- *
- * PURPOSE: Test harness for Stack class.
- * 
- * $Revision:$
- * $History: $
- *
- ***************************************************************************** 
+/**
+ *	@file    test01.cpp
+ *	@brief   simple c++ stack test harness
+ *	@author
+ *	@note
  */
 
 /*

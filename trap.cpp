@@ -1,10 +1,26 @@
+/**
+ *	@file    trap.cpp
+ *	@brief   simple c++ stack trap / exception handler
+ *	@author
+ *	@note
+ */
 #include <iostream>
 #include <string.h>
 #include "trap.h"
 
 using namespace std;
 
-
+/**
+ * @function  void Thrower(stack_exception_t exp)
+ *
+ * @brief     Thrower of exceptions
+ *
+ * @param[in] stack_exception_t exp - the exception type
+ *
+ * @return    None
+ *
+ * @note      if EXCEPTION is defined then it will "throw" a real exception
+ */
 void Thrower(stack_exception_t exp) {
 #if defined (EXCEPTION)
   if (exp == e_stackoverflow ) {

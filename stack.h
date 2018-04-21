@@ -1,27 +1,9 @@
-/*!
- *****************************************************************************
- * 
- * MODULE: C++ Programming Examples
- *
- * $Header: $
- * $Archive:$
- * 
- * $Workfile: $
- *
- * $Author: Onyettr $
- *
- * NAME: Richard Onyett 
- * EMAIL: 
- *
- * PURPOSE: 
- * Header file for simple String class
- * 
- * $Revision:$
- * $History: $
- *
- ***************************************************************************** 
+/**
+ *	@file    stack.h
+ *	@brief   simple c++ stack implementation
+ *	@author
+ *	@note
  */
-
 /*
 ******************************************************************************
 Includes
@@ -94,8 +76,8 @@ class StackUnderFlowExcep {
     }
 };
 
-/*!
- * Stack classs
+/**
+ * @brief Stack class
  */ 
 class Stack
 {
@@ -108,15 +90,16 @@ class Stack
    public:
      ~Stack();                   // dtor
 
-     /*! Constructor for the Stack */
+     /*!> Constructor for the Stack */
      Stack(int elements=0);      // ctor
 
     // Member functions
-    /*! \fn         int pop(void);          */
+    /**
+     * !> \fn         int pop(void);          */
     int pop(void);               // pop off the stack
-    /*! \fn         int peek(void);         */
+    /*!> \fn         int peek(void);         */
     int peek(void);              // Quick peek at the top of the stack
-    /*!
+    /*!>
        \fn     void push(int element);      
        \param element Integer to be pushed to Stack
     */

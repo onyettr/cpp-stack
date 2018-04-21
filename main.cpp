@@ -50,7 +50,7 @@ Global variables
 Exported Global variables
 ******************************************************************************
 */
-extern void poortool_init(void);
+extern void poortool_init(void); /* Command line monitor */
 
 /*
 ******************************************************************************
@@ -76,7 +76,6 @@ int main ( void )
 
   test_run();  // Call out the test harness
   poortool_init();
-
 }
 
 //
