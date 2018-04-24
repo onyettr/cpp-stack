@@ -434,7 +434,7 @@ void poortool_init(void)
     * Test for any keypress to enter the mode
     */
     while (ip_char == 0) {
-      for (int i; i < 10000; i++);
+      for (int i = 0; i < 10000; i++);
       ip_char = pollkey();
     }
     Going = GetCLI();                         /* Execute the Command Line */
