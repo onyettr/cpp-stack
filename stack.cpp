@@ -111,13 +111,13 @@ Stack<T>::~Stack() {
 }
 
 /**
- * @function  int Stack::pop(void) {
+ * @function  <T> Stack::pop(void) {
  *
  * @brief     Stack pop operation
  *
  * @param[in] none
  *
- * @return    Top of the stack (its an int)
+ * @return    Top of the stack
  *
  * @note      
  */
@@ -133,19 +133,21 @@ T Stack<T>::pop(void) {
   if ( StackTop == -1) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
-  } else {
-    return pStack[StackTop--];
+
+    exit(-1);
   }
+
+  return pStack[StackTop--];
 }
 
 /**
- * @function  int Stack::peek(void)
+ * @function  <T> Stack::peek(void)
  *
  * @brief     Stack peek operation
  *
  * @param[in] none
  *
- * @return    return Top of the stack (its an int)
+ * @return    return Top of the stack
  *
  * @note      
  */
@@ -155,23 +157,22 @@ T Stack<T>::peek(void) {
   cout << "<" << this << ">TRACE: peek  called"  << endl;  
 #endif
 
-  /*
-   * TODO replace with isEmpty?
-   */
-  if ( StackTop == -1) {
+  if ( isEmpty() ) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
-  } else {
-    return pStack[StackTop];
+
+    exit(-1); /* we are done */
   }
+
+  return pStack[StackTop];
 }
     
 /**
- * @function  void Stack::push(int element) {
+ * @function  void Stack::push(T element) {
  *
  * @brief     Stack push element
  *
- * @param[in] int element
+ * @param[in] T element
  *
  * @return    none
  *
