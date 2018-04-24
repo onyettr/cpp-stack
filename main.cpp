@@ -74,8 +74,10 @@ int main ( void )
   // Sign on
   cout << "C++ Examples Simple Stack Class" << endl; 
 
-  test_run();  // Call out the test harness
-  poortool_init();
+  test_run_integer();  // Call out the test harness
+  test_run_strings();  // Next tests with strings
+
+//  poortool_init();
 }
 
 //

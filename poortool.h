@@ -1,19 +1,5 @@
 /*
  *****************************************************************************
- * COPYRIGHT (C) STMicroelectronics 1997,1998,1999,2000,2001,2002
- * 
- * MODULE: C++ Programming Examples
- *
- * $Header: $
- * $Archive:$
- * 
- * $Workfile: $
- *
- * $Author: Onyettr $
- *
- * NAME: Richard Onyett 
- * EMAIL: richard.onyett@st.com
- *
  * PURPOSE: 
  * 
  * $Revision:$
@@ -27,8 +13,8 @@
 Includes
 ******************************************************************************
 */
-#ifndef __STACK_H__
-#define __STACK_H__
+#ifndef __POORTOOL_H__
+#define __POORTOOL_H__
 
 /*
 ******************************************************************************

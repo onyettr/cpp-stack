@@ -79,10 +79,11 @@ class StackUnderFlowExcep {
 /**
  * @brief Stack class
  */ 
+template <class T>
 class Stack
 {
    private:
-     int  *pStack;               // Stack base
+     T   *pStack;               // Stack base
      int  StackCount;            // Stack Counter
      int  StackTop;              // Stack ptr
      int  StackMax;              // Stack Maximum size
@@ -94,22 +95,22 @@ class Stack
      Stack(int elements=0);      // ctor
 
     // Member functions
-    /**
-     * !> \fn         int pop(void);          */
-    int pop(void);               // pop off the stack
+    /*!> \fn         int pop(void);          */
+    T   pop(void);               // pop off the stack
     /*!> \fn         int peek(void);         */
-    int peek(void);              // Quick peek at the top of the stack
+    T   peek(void);              // Quick peek at the top of the stack
     /*!>
        \fn     void push(int element);      
        \param element Integer to be pushed to Stack
     */
-    void push(int element);      // push new element
+    void push(T);                // push new element
     void StackDump(int num);     // Debug routines
     void StackEmpty(void);       // Clear stack
 
-    /*! \fn     bool isEmpty(void);  Test is Stack is empty or not  */
+    /*!> \fn     bool isEmpty(void);  Test if Stack is empty or not  */
     bool isEmpty(void);          // Test if empty
 };
 
+#include "stack.cpp"
 #endif // __STACK_H__
 

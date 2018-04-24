@@ -1,6 +1,6 @@
 /**
- *	@file    test01.cpp
- *	@brief   simple c++ stack test harness
+ *	@file    test02.cpp
+ *	@brief   simple c++ stack test harness, this time with strings
  *	@author
  *	@note
  */
@@ -11,6 +11,7 @@ Includes
 ******************************************************************************
 */
 #include <iostream>
+#include <string.h>
 #include "stack.h"
 #include "test.h"
 
@@ -58,17 +59,17 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
-int test01 ( void )
+static int string_test01 ( void )
 {
   cout << "test01 - create stack" << endl;
 
-  Stack<int> MyStack(5);
+  Stack<string> MyStack(5);
 
   MyStack.StackDump(0);
-  MyStack.push(100);
-  MyStack.push(200);
-  MyStack.push(300);
-  MyStack.push(700);
+  MyStack.push("A");
+  MyStack.push("B");
+  MyStack.push("C");
+  MyStack.push("D");
 
   MyStack.StackDump(0);
   MyStack.StackEmpty();
@@ -78,15 +79,15 @@ int test01 ( void )
   return 0;
 }
 
-int test02 ( void )
+static int string_test02 ( void )
 {
   // Sign on
   cout << "test02 - Stack overflow" << endl;
 
-  Stack<int> overload(2);
-  overload.push(100);
-  overload.push(200);
-  overload.push(300);  // Fail here
+  Stack<string> overload(2);
+  overload.push("1");
+  overload.push("2");
+  overload.push("f");  // Fail here
   overload.StackDump(0);
 
   cout << "test02 - Thats it!" << endl;
@@ -94,13 +95,13 @@ int test02 ( void )
   return 0;
 }
 
-int test03 ( void )
+static int string_test03 ( void )
 {
   cout << "test03 - Stack underflow" << endl;
 
-  Stack<int> overload(2);
-  overload.push(101);
-  overload.push(202);
+  Stack<string> overload(2);
+  overload.push("a");
+  overload.push("b");
 
   overload.pop();
   overload.pop();
@@ -112,15 +113,15 @@ int test03 ( void )
   return 0;
 }
 
-int test04 ( void )
+static int string_test04 ( void )
 {
   cout << "test04 - iSEmpty unit test" << endl;
 
-  Stack<int> empty(3);
+  Stack<string> empty(3);
 
   cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
-  empty.push(111);
+  empty.push("!");
   cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
   cout << "test04 - Thats it!" << endl;
@@ -128,16 +129,16 @@ int test04 ( void )
   return 0;
 }
 
-int test05 ( void )
+static int string_test05 ( void )
 {
   cout << "test05 - peeking" << endl;
 
-  Stack<int> peekme(3);
+  Stack<string> peekme(3);
   cout << "Peeking with nothing there " << peekme.peek() << endl;
 
-  peekme.push(2001);
-  peekme.push(2002);
-  peekme.push(2003);
+  peekme.push("1");
+  peekme.push("2");
+  peekme.push("3");
 
   peekme.StackDump(0);
   cout << "Peeking with something there " << peekme.peek() << endl;
@@ -145,19 +146,19 @@ int test05 ( void )
   return 0;
 }
 
-int test06 ( void )
+static int string_test06 ( void )
 {
   cout << "test06 - Stack Display" << endl;
 
-  Stack<int> overload(5);
+  Stack<string> overload(5);
 
-  overload.push(101);
+  overload.push("1");
   overload.StackDump(0);
-  overload.push(202);
+  overload.push("2");
   overload.StackDump(0);
-  overload.push(302);
+  overload.push("3");
   overload.StackDump(0);
-  overload.push(402);
+  overload.push("4");
   overload.StackDump(0);
 
   overload.pop();
@@ -170,24 +171,24 @@ int test06 ( void )
   return 0;
 }
 
-int test07 ( void )
+static int string_test07 ( void )
 {
   cout << "test07 - StackEmpty" << endl;
 
-  Stack<int> S(2);
+  Stack<string> S(2);
 
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
   
-  S.push(222);
-  S.push(333); 
+  S.push("h");
+  S.push("e");
   S.StackDump(0);
 
   cout << "test07 - Setting stack to empty" << endl;
   S.StackEmpty();
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
-  S.push(444);
+  S.push("next");
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
 
@@ -196,19 +197,19 @@ int test07 ( void )
   return 0;
 }
 
-int test_run_integer( void ) {
+int test_run_strings( void ) {
   int error_code = 0;
 
 #if defined(EXCEPTION)
   try {
 #endif
-    error_code  = test01();    /* Run one of the tests */
-    error_code |= test02();    /* Run one of the tests */
-    error_code |= test03();    /* Run one of the tests */
-    error_code |= test04();    /* Run one of the tests */
-    error_code |= test05();    /* Run one of the tests */
-    error_code |= test06();    /* Run one of the tests */
-    error_code |= test07();    /* Run one of the tests */
+    error_code  = string_test01();    /* Run one of the tests */
+    error_code |= string_test02();    /* Run one of the tests */
+    error_code |= string_test03();    /* Run one of the tests */
+    error_code |= string_test04();    /* Run one of the tests */
+    error_code |= string_test05();    /* Run one of the tests */
+    error_code |= string_test06();    /* Run one of the tests */
+    error_code |= string_test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
     } catch(int e) {
     cout << "ouch something bad went on = " << e << endl;

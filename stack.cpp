@@ -64,23 +64,24 @@ Prototypes of all functions contained in this file (in order of occurance)
  *
  * @brief     Stack ctor
  *
- * @param[in] int elements - number of stack elements to allocate
+ * @param[in] int size  - number of stack elements to allocate
  *
  * @return    None
  *
  * @note      Entry point
  */
-Stack::Stack(int elements) {
+template <class T>
+Stack<T>::Stack(int size) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: Basic Constructor called"  << endl;  
 #endif
 
-  StackCount = elements;
-  StackMax = elements;
-  StackTop = -1;
+  StackCount  = size;
+  StackMax    = size;
+  StackTop    = -1;
   StackPolicy = e_fifo;
 
-  pStack = new int[elements];
+  pStack = new T[size];
   if ( pStack == NULL ) {
     Thrower(e_stackoutofmemory);
   }
@@ -97,7 +98,8 @@ Stack::Stack(int elements) {
  *
  * @note      dtor
  */
-Stack::~Stack() {
+template <class T>
+Stack<T>::~Stack() {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: Basic Destructor called pStack = "  << pStack << endl;  
 #endif
@@ -119,19 +121,21 @@ Stack::~Stack() {
  *
  * @note      
  */
-int Stack::pop(void) {
+template <class T>
+T Stack<T>::pop(void) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: pop  called"  << endl;  
 #endif
 
+  /*
+   * TODO: should call isEmpty
+   */
   if ( StackTop == -1) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
-
-    return 0;  /* This doesnt look right! */
-  } 
-
-  return pStack[StackTop--];
+  } else {
+    return pStack[StackTop--];
+  }
 }
 
 /**
@@ -145,16 +149,21 @@ int Stack::pop(void) {
  *
  * @note      
  */
-int Stack::peek(void) {
-
+template <class T>
+T Stack<T>::peek(void) {
+#if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: peek  called"  << endl;  
+#endif
 
+  /*
+   * TODO replace with isEmpty?
+   */
   if ( StackTop == -1) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
+  } else {
+    return pStack[StackTop];
   }
-  
-  return pStack[StackTop];
 }
     
 /**
@@ -168,7 +177,8 @@ int Stack::peek(void) {
  *
  * @note      
  */
-void Stack::push(int element) {
+template <class T>
+void Stack<T>::push(T element) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: push called"  << endl;  
   cout << "Top = " << StackTop << "StackMax = " << StackMax << endl;
@@ -194,7 +204,8 @@ void Stack::push(int element) {
  *
  * @note      
  */
-bool Stack::isEmpty(void) {
+template <class T>
+bool Stack<T>::isEmpty(void) {
   bool stackEmpty = false;
   
   if (StackTop == -1) {
@@ -215,7 +226,8 @@ bool Stack::isEmpty(void) {
  *
  * @note      
  */
-void Stack::StackEmpty(void) {
+template <class T>
+void Stack<T>::StackEmpty(void) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: StackEmpty called"  << endl;  
 #endif
@@ -234,7 +246,8 @@ void Stack::StackEmpty(void) {
  *
  * @note      
  */
-void Stack::StackDump(int num) {
+template <class T>
+void Stack<T>::StackDump(int num) {
 #if defined ( DEBUG_TRACE )
   cout << "StackDump: Size = " << StackMax << ", used = " << StackCount << ", Top = " << StackTop << endl;
 #endif

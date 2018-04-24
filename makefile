@@ -12,7 +12,7 @@ CHECK_FLAGS	= --language=c++ --enable=all
 #CFLAGS += -DDEBUG_TRACE
 #CFLAGS += -DEXCEPTION
 
-OBJS  = main.o stack.o test01.o poortool.o trap.o
+OBJS  = main.o trap.o test01.o test02.o 
 
 all:	stack.exe splint-me
 
@@ -25,6 +25,8 @@ stack.o:	stack.cpp stack.h
 	$(CC) $(CFLAGS) $(DEBUG) stack.cpp -o stack.o
 test01.o:	test01.cpp
 	$(CC) $(CFLAGS) $(DEBUG) test01.cpp -o test01.o
+test02.o:	test02.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test02.cpp -o test02.o
 poortool.o:	poortool.c
 	$(CC) $(CFLAGS) $(DEBUG) poortool.c -o poortool.o
 trap.o:		trap.cpp trap.h
@@ -39,6 +41,7 @@ clean:
 	rm -f main.o
 	rm -f trap.o
 	rm -f test01.o
+	rm -f test02.o
 	rm -f poortool.o
 	rm -f core
 

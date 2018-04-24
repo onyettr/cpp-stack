@@ -60,7 +60,7 @@ Private variables (static)
 ******************************************************************************
 */
 static int base = 10;                /* Radix for numbers         */
-Stack  *gStack = (Stack*)NULL;                 
+// Stack  *gStack = (Stack*)NULL;
 
 /*
 ******************************************************************************
@@ -280,7 +280,7 @@ static BOOL Eval(char string[], long int *result)
 static void tt_push (int argc, char *argv[])
 {
   long int data;
-
+#if 0
   if ( argc == 1 ) {
     Eval ( argv[0], &data);
     cout << "PUSH " << data << endl;
@@ -294,6 +294,7 @@ static void tt_push (int argc, char *argv[])
   else {
     cout << "PUSH what?" << endl;
   }
+#endif
 }
 
 static void tt_create (int argc, char *argv[])
