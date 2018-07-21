@@ -60,18 +60,46 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 int test01 ( void )
 {
-  cout << "test01 - create stack" << endl;
+  cout << "test01a - create <int> stack" << endl;
 
-  Stack<int> MyStack(5);
+  Stack<int>   MyStack(5);
 
-  MyStack.StackDump(0);
   MyStack.push(100);
   MyStack.push(200);
   MyStack.push(300);
   MyStack.push(700);
 
   MyStack.StackDump(0);
-  MyStack.StackEmpty();
+
+  cout << "test01b - create <char> stack" << endl;
+
+  Stack<char>  MyCharStack(5);
+
+  MyCharStack.push('A');
+  MyCharStack.push('B');
+  MyCharStack.push('C');
+  MyCharStack.push('D');
+
+  MyCharStack.StackDump(0);
+  MyCharStack.StackEmpty();
+
+  cout << "test01c - create <float> stack" << endl;
+
+  Stack<float>  MyFloatStack(5);
+
+  MyFloatStack.push(1.2);
+  MyFloatStack.push(2.3);
+  MyFloatStack.push(3.4);
+  MyFloatStack.push(4.5);
+
+  MyFloatStack.StackDump(0);
+  MyFloatStack.StackEmpty();
+
+  cout << "test01c - pop <int> stack" << endl;
+  MyStack.pop();
+  MyStack.pop();
+  MyStack.pop();
+  MyStack.StackDump(0);
 
   cout << "test01 - Thats it!" << endl;
 
