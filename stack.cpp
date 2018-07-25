@@ -127,17 +127,16 @@ T Stack<T>::pop(void) {
   cout << "<" << this << ">TRACE: pop  called"  << endl;  
 #endif
 
-  /*
-   * TODO: should call isEmpty
-   */
-  if ( StackTop == -1) {
+  if ( isEmpty() ) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
 
-    exit(-1);
+    return 0;
   }
-
-  return pStack[StackTop--];
+  else
+  {
+    return pStack[StackTop--];
+  }
 }
 
 /**
@@ -161,7 +160,7 @@ T Stack<T>::peek(void) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
 
-    exit(-1); /* we are done */
+    return 0;
   }
 
   return pStack[StackTop];
@@ -179,7 +178,7 @@ T Stack<T>::peek(void) {
  * @note      
  */
 template <class T>
-void Stack<T>::push(T element) {
+void Stack<T>::push(const T& element) {
 #if defined ( DEBUG_TRACE )
   cout << "<" << this << ">TRACE: push called"  << endl;  
   cout << "Top = " << StackTop << "StackMax = " << StackMax << endl;
@@ -188,6 +187,8 @@ void Stack<T>::push(T element) {
   if ( (StackTop+1) == StackMax ) {
     cout << "Stack Overflow - Cannot push" << endl;
     Thrower(e_stackoverflow);
+
+    return;
   } else {
     StackTop++;
     pStack[StackTop] = element;

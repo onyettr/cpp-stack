@@ -61,15 +61,15 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 static int string_test01 ( void )
 {
-  cout << "test01 - create stack" << endl;
+  cout << "test01 <string> - create stack" << endl;
 
   Stack<string> MyStack(5);
 
   MyStack.StackDump(0);
-  MyStack.push("A");
-  MyStack.push("B");
-  MyStack.push("C");
-  MyStack.push("D");
+  MyStack.push("test01-A");
+  MyStack.push("test01-B");
+  MyStack.push("test01-C");
+  MyStack.push("test01-D");
 
   MyStack.StackDump(0);
   MyStack.StackEmpty();
@@ -82,12 +82,12 @@ static int string_test01 ( void )
 static int string_test02 ( void )
 {
   // Sign on
-  cout << "test02 - Stack overflow" << endl;
+  cout << "test02 <string> - Stack overflow" << endl;
 
   Stack<string> overload(2);
-  overload.push("1");
-  overload.push("2");
-  overload.push("f");  // Fail here
+  overload.push("test02-1");
+  overload.push("test02-2");
+  overload.push("test02-3");  // Fail here
   overload.StackDump(0);
 
   cout << "test02 - Thats it!" << endl;
@@ -97,11 +97,11 @@ static int string_test02 ( void )
 
 static int string_test03 ( void )
 {
-  cout << "test03 - Stack underflow" << endl;
+  cout << "test03 <string> - Stack underflow" << endl;
 
   Stack<string> overload(2);
-  overload.push("a");
-  overload.push("b");
+  overload.push("test03-1");
+  overload.push("test03-2");
 
   overload.pop();
   overload.pop();
@@ -115,7 +115,7 @@ static int string_test03 ( void )
 
 static int string_test04 ( void )
 {
-  cout << "test04 - iSEmpty unit test" << endl;
+  cout << "test04 <string> - iSEmpty unit test" << endl;
 
   Stack<string> empty(3);
 
@@ -131,14 +131,14 @@ static int string_test04 ( void )
 
 static int string_test05 ( void )
 {
-  cout << "test05 - peeking" << endl;
+  cout << "test05 <string> - peeking" << endl;
 
   Stack<string> peekme(3);
   cout << "Peeking with nothing there " << peekme.peek() << endl;
 
-  peekme.push("1");
-  peekme.push("2");
-  peekme.push("3");
+  peekme.push("test05-1");
+  peekme.push("test05-2");
+  peekme.push("test05-3");
 
   peekme.StackDump(0);
   cout << "Peeking with something there " << peekme.peek() << endl;
@@ -148,17 +148,17 @@ static int string_test05 ( void )
 
 static int string_test06 ( void )
 {
-  cout << "test06 - Stack Display" << endl;
+  cout << "test06 <string> - Stack Display" << endl;
 
   Stack<string> overload(5);
 
-  overload.push("1");
+  overload.push("test06-1");
   overload.StackDump(0);
-  overload.push("2");
+  overload.push("test06-22");
   overload.StackDump(0);
-  overload.push("3");
+  overload.push("test06-3");
   overload.StackDump(0);
-  overload.push("4");
+  overload.push("test06-4");
   overload.StackDump(0);
 
   overload.pop();
@@ -173,22 +173,22 @@ static int string_test06 ( void )
 
 static int string_test07 ( void )
 {
-  cout << "test07 - StackEmpty" << endl;
+  cout << "test07 <string> - StackEmpty" << endl;
 
   Stack<string> S(2);
 
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
   
-  S.push("h");
-  S.push("e");
+  S.push("test07-push01");
+  S.push("test07-push02");
   S.StackDump(0);
 
   cout << "test07 - Setting stack to empty" << endl;
   S.StackEmpty();
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
-  S.push("next");
+  S.push("test07-next");
   S.StackDump(0);
   cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
 
@@ -212,7 +212,7 @@ int test_run_strings( void ) {
     error_code |= string_test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
     } catch(int e) {
-    cout << "ouch something bad went on = " << e << endl;
+    cout << "Exception: ouch something bad went on = " << e << endl;
   }
 #endif
 
