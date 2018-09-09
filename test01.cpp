@@ -130,9 +130,9 @@ int test03 ( void )
   overload.push(101);
   overload.push(202);
 
-  overload.pop();
-  overload.pop();
-  overload.pop();       // Fail here
+  cout << "test03, first  pop = 202 " << overload.pop() << endl;
+  cout << "test03, second pop = 101 " << overload.pop() << endl;
+  cout << "test03, third  pop = fail" << overload.pop() << endl;    
 
   overload.StackDump(0);
   overload.StackEmpty();

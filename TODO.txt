@@ -1,5 +1,6 @@
-1. Add template<> to the class type
-2 Add dynamcic LIST instead of Array. i
-3. Should pop() move up the elements?
-4. stackpolicy implementation
-5. Thrower() should this exit()? 
+* cpp-stack tasks
+** TODO test harness as library
+** DONE Convert to Templates
+
+* Issues
+** TODO pop uses return 0, this is not correct when using Stack<T>

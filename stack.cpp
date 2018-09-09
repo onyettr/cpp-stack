@@ -131,7 +131,7 @@ T Stack<T>::pop(void) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
 
-    return 0;
+    //    return 0;
   }
   else
   {
