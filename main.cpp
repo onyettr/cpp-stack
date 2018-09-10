@@ -78,6 +78,8 @@ int main ( void )
   test_run_strings();  // Next tests with strings
 
 //  poortool_init();
+
+  cout << "C++ Examples Simple Stack Class - Ends" << endl;   
 }
 
 //

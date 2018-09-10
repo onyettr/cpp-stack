@@ -238,8 +238,10 @@ int test_run_integer( void ) {
     error_code |= test06();    /* Run one of the tests */
     error_code |= test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
-    } catch(int e) {
-    cout << "ouch something bad went on = " << e << endl;
+    } catch(const char *e) {
+    cout << "Catch! ouch something bad went on = " << e << endl;
+  } catch (...) {
+    cout << "Catch all!" << endl;
   }
 #endif
 

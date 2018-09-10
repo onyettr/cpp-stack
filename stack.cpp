@@ -131,7 +131,7 @@ T Stack<T>::pop(void) {
     cout << "Stack empty - Cannot pull" << endl;
     Thrower(e_stackunderflow);
 
-    //    return 0;
+    return 0;
   }
   else
   {
@@ -187,8 +187,6 @@ void Stack<T>::push(const T& element) {
   if ( (StackTop+1) == StackMax ) {
     cout << "Stack Overflow - Cannot push" << endl;
     Thrower(e_stackoverflow);
-
-    return;
   } else {
     StackTop++;
     pStack[StackTop] = element;

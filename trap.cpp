@@ -24,13 +24,13 @@ using namespace std;
 void Thrower(stack_exception_t exp) {
 #if defined (EXCEPTION)
   if (exp == e_stackoverflow ) {
-    throw new StackOverFlowExcep();  
+    throw "StackOverFlowExcep";  
   } else if (exp == e_stackunderflow) {
-    throw new StackUnderFlowExcep();  
+    throw "StackUnderFlowExcep";  
   } else if (exp == e_stackoutofmemory) {
-    throw new StackOutofMemoryExcep();  
+    throw "StackOutofMemoryExcep";
   } else if (exp == e_stacksizeisnegative) {
-    throw new StackSizeIsNegativeExcep();  
+    throw "StackSizeIsNegativeExcep";
   }
 #else
   cout << "ouch something bad went on = ";
