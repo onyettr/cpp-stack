@@ -14,19 +14,22 @@ DEBUG 		=	-g
 CFLAGS		=	-c -Wall -pedantic
 LFLAGS=
 
-CHECK		= cppcheck
-CHECK_FLAGS	= --language=c++ --enable=all
+CHECK		= 	cppcheck
+CHECK_FLAGS	= 	--language=c++ --enable=all
 
 # -DDEBUG_TRACE	Will turn on deep trace per function
 # -DEXCEPTION	Will use the real exceptions with the 'try' that's in the test harness
 #CFLAGS += -DDEBUG_TRACE
-#CFLAGS += -DEXCEPTION
+CFLAGS 		+= 	-DEXCEPTION
 
 # Build objects
 OBJS  = $(OBJECT_DIR)/main.o 	 	\
 	$(OBJECT_DIR)/trap.o		\
-	$(OBJECT_DIR)/test01.o 		\
-	$(OBJECT_DIR)/test02.o 	
+	$(OBJECT_DIR)/test_push.o 	\
+	$(OBJECT_DIR)/test_peek.o 	\
+	$(OBJECT_DIR)/test_empty.o 	\
+	$(OBJECT_DIR)/test_overflow.o 	\
+	$(OBJECT_DIR)/test_underflow.o
 
 LIBS  = libstack.a
 
@@ -57,11 +60,20 @@ $(OBJECT_DIR)/main.o:		main.cpp
 #$(OBJECT_DIR)/stack.o:	stack.cpp stack.h
 #	$(CC) $(CFLAGS) $(DEBUG) stack.cpp -o $(OBJECT_DIR)/stack.o
 
-$(OBJECT_DIR)/test01.o:	test01.cpp
-	$(CC) $(CFLAGS) $(DEBUG) test01.cpp -o $(OBJECT_DIR)/test01.o
+$(OBJECT_DIR)/test_push.o:	test_push.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_push.cpp -o $(OBJECT_DIR)/test_push.o
 
-$(OBJECT_DIR)/test02.o:	test02.cpp
-	$(CC) $(CFLAGS) $(DEBUG) test02.cpp -o $(OBJECT_DIR)/test02.o
+$(OBJECT_DIR)/test_peek.o:	test_peek.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_peek.cpp -o $(OBJECT_DIR)/test_peek.o
+
+$(OBJECT_DIR)/test_empty.o:	test_empty.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_empty.cpp -o $(OBJECT_DIR)/test_empty.o
+
+$(OBJECT_DIR)/test_overflow.o:	test_overflow.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_overflow.cpp -o $(OBJECT_DIR)/test_overflow.o
+
+$(OBJECT_DIR)/test_underflow.o:	test_underflow.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_underflow.cpp -o $(OBJECT_DIR)/test_underflow.o
 
 $(OBJECT_DIR)/trap.o:		trap.cpp trap.h
 	$(CC) $(CFLAGS) $(DEBUG) trap.cpp -o $(OBJECT_DIR)/trap.o
@@ -72,8 +84,11 @@ clean:
 	rm -f $(OBJECT_DIR)/stack.o
 	rm -f $(OBJECT_DIR)/main.o
 	rm -f $(OBJECT_DIR)/trap.o
-	rm -f $(OBJECT_DIR)/test01.o
-	rm -f $(OBJECT_DIR)/test02.o
+	rm -f $(OBJECT_DIR)/test_push.o
+	rm -f $(OBJECT_DIR)/test_peek.o
+	rm -f $(OBJECT_DIR)/test_empty.o
+	rm -f $(OBJECT_DIR)/test_overflow.o
+	rm -f $(OBJECT_DIR)/test_underflow.o
 	rm -f core
 
 #

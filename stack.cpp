@@ -83,7 +83,7 @@ Stack<T>::Stack(int size) {
 
   pStack = new T[size];
   if ( pStack == NULL ) {
-    Thrower(e_stackoutofmemory);
+    throw std::runtime_error("Stack<T> - failure to allocate memory");    
   }
 }
 
@@ -128,10 +128,7 @@ T Stack<T>::pop(void) {
 #endif
 
   if ( isEmpty() ) {
-    cout << "Stack empty - Cannot pull" << endl;
-    Thrower(e_stackunderflow);
-
-    //    return 0;
+    throw std::runtime_error("Stack<T>::pop - stack is empty");
   }
   else
   {
@@ -157,17 +154,14 @@ T Stack<T>::peek(void) {
 #endif
 
   if ( isEmpty() ) {
-    cout << "Stack empty - Cannot pull" << endl;
-    Thrower(e_stackunderflow);
-
-    return 0;
+    throw std::runtime_error("Stack<T>::peek - stack is empty");    
   }
 
   return pStack[StackTop];
 }
     
 /**
- * @function  void Stack::push(T element) {
+ * @function  void Stack::push(T element) 
  *
  * @brief     Stack push element
  *
@@ -185,10 +179,7 @@ void Stack<T>::push(const T& element) {
 #endif
 
   if ( (StackTop+1) == StackMax ) {
-    cout << "Stack Overflow - Cannot push" << endl;
-    Thrower(e_stackoverflow);
-
-    return;
+    throw std::runtime_error("Stack<T>::push - stack is full");    
   } else {
     StackTop++;
     pStack[StackTop] = element;

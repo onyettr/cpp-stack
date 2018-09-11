@@ -106,40 +106,6 @@ int test01 ( void )
   return 0;
 }
 
-int test02 ( void )
-{
-  // Sign on
-  cout << "test02 - Stack overflow" << endl;
-
-  Stack<int> overload(2);
-  overload.push(100);
-  overload.push(200);
-  overload.push(300);  // Fail here
-  overload.StackDump(0);
-
-  cout << "test02 - Thats it!" << endl;
-
-  return 0;
-}
-
-int test03 ( void )
-{
-  cout << "test03 - Stack underflow" << endl;
-
-  Stack<int> overload(2);
-  overload.push(101);
-  overload.push(202);
-
-  cout << "test03, first  pop = 202 " << overload.pop() << endl;
-  cout << "test03, second pop = 101 " << overload.pop() << endl;
-  cout << "test03, third  pop = fail" << overload.pop() << endl;    
-
-  overload.StackDump(0);
-  overload.StackEmpty();
-
-  return 0;
-}
-
 int test04 ( void )
 {
   cout << "test04 - iSEmpty unit test" << endl;
@@ -151,7 +117,6 @@ int test04 ( void )
   empty.push(111);
   cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
-  cout << "test04 - Thats it!" << endl;
 
   return 0;
 }
@@ -238,8 +203,10 @@ int test_run_integer( void ) {
     error_code |= test06();    /* Run one of the tests */
     error_code |= test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
-    } catch(int e) {
-    cout << "ouch something bad went on = " << e << endl;
+  } catch (std::runtime_error& e) {
+    cout << "Exception: " << e.what() << endl;
+  } catch(...) {
+    cout << "Exception: ouch something bad went on = " << endl;
   }
 #endif
 

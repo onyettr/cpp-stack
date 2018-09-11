@@ -1,8 +1,8 @@
 /**
- *	@file    main.cpp
- *	@brief   simple c++ stack main harness
+ *	@file    test_peek.cpp
+ *	@brief   simple c++ stack test harness
  *	@author
- *	@note	
+ *	@note
  */
 
 /*
@@ -11,7 +11,8 @@ Includes
 ******************************************************************************
 */
 #include <iostream>
-#include "test.h"       /* Test harness entry point */
+#include "stack.h"
+#include "test.h"
 
 using namespace std;
 
@@ -50,7 +51,6 @@ Global variables
 Exported Global variables
 ******************************************************************************
 */
-extern void poortool_init(void); /* Command line monitor */
 
 /*
 ******************************************************************************
@@ -58,28 +58,36 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
-/**
- * @function  int main(void)
- *
- * @brief     entry point
- *
- * @param[in] None
- *
- * @return    None
- *
- * @note      Entry point
- */
-int main ( void )
+
+int test_peek ( void )
 {
-  // Sign on
-  cout << "C++ Examples Simple Stack Class" << endl; 
+  cout << "test_peek - peeking" << endl;
 
-  test_run_push();
-  test_run_empty();
-  test_run_peek();
-  test_run_overflow();
+  Stack<int> peekme(3);
+  cout << "Peeking with nothing there " << peekme.peek() << endl;
 
-  //  poortool_init();
+  peekme.push(2001);
+  peekme.push(2002);
+  peekme.push(2003);
+
+  peekme.StackDump(0);
+  cout << "Peeking with something there " << peekme.peek() << endl;
+
+  return 0;
+}
+
+int test_run_peek( void ) {
+  int error_code = 0;
+
+  try {
+    error_code  = test_peek();    /* Run one of the tests */
+  } catch (std::runtime_error& e) {
+    cout << "Exception: " << e.what() << endl;
+  } catch(...) {
+    cout << "Exception: ouch something bad went on = " << endl;
+  }
+
+  return error_code;
 }
 
 //

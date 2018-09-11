@@ -211,9 +211,11 @@ int test_run_strings( void ) {
     error_code |= string_test06();    /* Run one of the tests */
     error_code |= string_test07();    /* Run one of the tests */
 #if defined(EXCEPTION)
-    } catch(int e) {
-    cout << "Exception: ouch something bad went on = " << e << endl;
-  }
+  } catch (std::runtime_error& e) {
+    cout << "Exception: " << e.what() << endl;
+  } catch(...) {
+    cout << "Exception: ouch something bad went on = " << endl;
+  }  
 #endif
 
   return error_code;

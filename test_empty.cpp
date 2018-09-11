@@ -1,8 +1,8 @@
 /**
- *	@file    main.cpp
- *	@brief   simple c++ stack main harness
+ *	@file    test_empty.cpp
+ *	@brief   simple c++ stack test harness
  *	@author
- *	@note	
+ *	@note
  */
 
 /*
@@ -11,7 +11,8 @@ Includes
 ******************************************************************************
 */
 #include <iostream>
-#include "test.h"       /* Test harness entry point */
+#include "stack.h"
+#include "test.h"
 
 using namespace std;
 
@@ -50,7 +51,6 @@ Global variables
 Exported Global variables
 ******************************************************************************
 */
-extern void poortool_init(void); /* Command line monitor */
 
 /*
 ******************************************************************************
@@ -58,28 +58,52 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
-/**
- * @function  int main(void)
- *
- * @brief     entry point
- *
- * @param[in] None
- *
- * @return    None
- *
- * @note      Entry point
- */
-int main ( void )
+
+int test_empty ( void )
 {
-  // Sign on
-  cout << "C++ Examples Simple Stack Class" << endl; 
+  cout << "test_empty - iSEmpty unit test" << endl;
 
-  test_run_push();
-  test_run_empty();
-  test_run_peek();
-  test_run_overflow();
+  Stack<int> empty(3);
 
-  //  poortool_init();
+  cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
+
+  empty.push(111);
+  cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
+
+  Stack<int> S(2);
+
+  S.StackDump(0);
+  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+  
+  S.push(222);
+  S.push(333); 
+  S.StackDump(0);
+
+  cout << "test07 - Setting stack to empty" << endl;
+  S.StackEmpty();
+  S.StackDump(0);
+  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+  S.push(444);
+  S.StackDump(0);
+  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+
+  cout << "test_empty - Ends" << endl;
+
+  return 0;
+}
+
+int test_run_empty( void ) {
+  int error_code = 0;
+
+  try {
+    error_code  = test_empty();    /* Run one of the tests */
+  } catch (std::runtime_error& e) {
+    cout << "Exception: " << e.what() << endl;
+  } catch(...) {
+    cout << "Exception: ouch something bad went on = " << endl;
+  }
+
+  return error_code;
 }
 
 //
