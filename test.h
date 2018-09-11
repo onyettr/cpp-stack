@@ -20,6 +20,7 @@ int test_run_peek     (void);
 int test_run_empty    (void);
 int test_run_integer  (void);
 int test_run_strings  (void);
+int test_run_display  (void);
 int test_run_overflow (void);
 int test_run_underflow(void);
 

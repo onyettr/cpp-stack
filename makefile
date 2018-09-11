@@ -23,13 +23,13 @@ CHECK_FLAGS	= 	--language=c++ --enable=all
 CFLAGS 		+= 	-DEXCEPTION
 
 # Build objects
-OBJS  = $(OBJECT_DIR)/main.o 	 	\
-	$(OBJECT_DIR)/trap.o		\
-	$(OBJECT_DIR)/test_push.o 	\
-	$(OBJECT_DIR)/test_peek.o 	\
-	$(OBJECT_DIR)/test_empty.o 	\
-	$(OBJECT_DIR)/test_overflow.o 	\
-	$(OBJECT_DIR)/test_underflow.o
+OBJS  = $(OBJECT_DIR)/main.o 	 		\
+		$(OBJECT_DIR)/test_push.o 		\
+		$(OBJECT_DIR)/test_peek.o 		\
+		$(OBJECT_DIR)/test_empty.o 		\
+		$(OBJECT_DIR)/test_display.o	\
+		$(OBJECT_DIR)/test_overflow.o 	\
+		$(OBJECT_DIR)/test_underflow.o
 
 LIBS  = libstack.a
 
@@ -69,6 +69,9 @@ $(OBJECT_DIR)/test_peek.o:	test_peek.cpp
 $(OBJECT_DIR)/test_empty.o:	test_empty.cpp
 	$(CC) $(CFLAGS) $(DEBUG) test_empty.cpp -o $(OBJECT_DIR)/test_empty.o
 
+$(OBJECT_DIR)/test_display.o:	test_display.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_display.cpp -o $(OBJECT_DIR)/test_display.o
+	
 $(OBJECT_DIR)/test_overflow.o:	test_overflow.cpp
 	$(CC) $(CFLAGS) $(DEBUG) test_overflow.cpp -o $(OBJECT_DIR)/test_overflow.o
 
@@ -87,6 +90,7 @@ clean:
 	rm -f $(OBJECT_DIR)/test_push.o
 	rm -f $(OBJECT_DIR)/test_peek.o
 	rm -f $(OBJECT_DIR)/test_empty.o
+	rm -f $(OBJECT_DIR)/test_display.o
 	rm -f $(OBJECT_DIR)/test_overflow.o
 	rm -f $(OBJECT_DIR)/test_underflow.o
 	rm -f core
