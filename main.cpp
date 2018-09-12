@@ -76,8 +76,9 @@ int main ( void )
 
   test_run_display();
   test_run_push();
-  test_run_pop ();  
-  test_run_empty();
+  //  test_run_pop ();
+  test_run_size();
+  //  test_run_empty();
   test_run_peek();
   test_run_overflow();
 

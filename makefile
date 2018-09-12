@@ -27,6 +27,7 @@ OBJS  = 	$(OBJECT_DIR)/main.o 	 		\
 		$(OBJECT_DIR)/test_pop.o		\
 		$(OBJECT_DIR)/test_push.o 		\
 		$(OBJECT_DIR)/test_peek.o 		\
+		$(OBJECT_DIR)/test_size.o 		\
 		$(OBJECT_DIR)/test_empty.o 		\
 		$(OBJECT_DIR)/test_display.o		\
 		$(OBJECT_DIR)/test_overflow.o 		\
@@ -71,6 +72,9 @@ $(OBJECT_DIR)/test_push.o:	test_push.cpp
 $(OBJECT_DIR)/test_peek.o:	test_peek.cpp
 	$(CC) $(CFLAGS) $(DEBUG) test_peek.cpp -o $(OBJECT_DIR)/test_peek.o
 
+$(OBJECT_DIR)/test_size.o:	test_size.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_size.cpp -o $(OBJECT_DIR)/test_size.o
+
 $(OBJECT_DIR)/test_empty.o:	test_empty.cpp
 	$(CC) $(CFLAGS) $(DEBUG) test_empty.cpp -o $(OBJECT_DIR)/test_empty.o
 
@@ -95,6 +99,7 @@ clean:
 	rm -f $(OBJECT_DIR)/test_pop.o
 	rm -f $(OBJECT_DIR)/test_push.o
 	rm -f $(OBJECT_DIR)/test_peek.o
+	rm -f $(OBJECT_DIR)/test_size.o
 	rm -f $(OBJECT_DIR)/test_empty.o
 	rm -f $(OBJECT_DIR)/test_display.o
 	rm -f $(OBJECT_DIR)/test_overflow.o

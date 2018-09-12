@@ -73,10 +73,10 @@ Prototypes of all functions contained in this file (in order of occurance)
 template <class T>
 Stack<T>::Stack(int size) {
 #if defined ( DEBUG_TRACE )
-  cout << "<" << this << ">TRACE: Basic Constructor called"  << endl;  
+  cout << "<" << this << ">TRACE: Stack Constructor called, size " << size << endl;  
 #endif
 
-  StackCount  = size;
+  StackCount  = 0;
   StackMax    = size;
   StackTop    = -1;
   StackPolicy = e_fifo;
@@ -132,6 +132,8 @@ T Stack<T>::pop(void) {
   }
   else
   {
+    StackCount--;
+
     return pStack[StackTop--];
   }
 }
@@ -181,7 +183,8 @@ void Stack<T>::push(const T& element) {
   if ( (StackTop+1) == StackMax ) {
     throw std::runtime_error("Stack<T>::push - stack is full");    
   } else {
-    StackTop++;
+    ++StackTop;
+    ++StackCount;
     pStack[StackTop] = element;
   }
 }
@@ -229,6 +232,26 @@ void Stack<T>::StackEmpty(void) {
 }
 
 /**
+ * @function  int Stack::StackSize(void) 
+ *
+ * @brief     Stack depth
+ *
+ * @param[in] none
+ *
+ * @return    int Depth of Stack
+ *
+ * @note      
+ */
+template <class T>
+int Stack<T>::StackSize(void) const {
+#if defined ( DEBUG_TRACE )
+   cout << "<" << this << ">TRACE: StackSize called"  << endl;  
+#endif
+
+   return StackCount;
+}
+
+/**
  * @function  void Stack::StackDump(int num) 
  *
  * @brief     Stack output
@@ -249,7 +272,7 @@ void Stack<T>::StackDump(int num) {
     cout << "StackDump: Stack is not created";
   }
   else {    
-    for (int i=0; i < StackMax; i++) {
+    for (int i=0; i < StackSize(); i++) {
       cout << "Stack[" << i << "] = " << pStack[i];
       if ( i == StackTop ) {
         cout << "  <--- Stacktop";

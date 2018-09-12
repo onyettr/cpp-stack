@@ -18,6 +18,7 @@ Includes
 int test_run_pop      (void);
 int test_run_push     (void);
 int test_run_peek     (void);
+int test_run_size     (void);
 int test_run_empty    (void);
 int test_run_integer  (void);
 int test_run_strings  (void);

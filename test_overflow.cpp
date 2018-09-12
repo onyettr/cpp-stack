@@ -67,6 +67,7 @@ int test_overflow ( void )
   overload.push(100);
   overload.push(200);
   overload.push(300);  // Fail here
+
   overload.StackDump(0);
 
   return 0;

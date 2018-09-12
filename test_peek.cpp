@@ -71,9 +71,6 @@ static int test_peek ( void )
 
   cout << "test_peek - peeking" << endl;
 
-#if 0  
-  cout << "Peeking with nothing there " << peekme.peek() << endl;
-#endif
   peekme.push(2001);
   peekme.push(2002);
   peekme.push(2003);
@@ -81,6 +78,9 @@ static int test_peek ( void )
   peekme.StackDump(0);
   cout << "Peeking with something there 2003 = " << peekme.peek() << endl;
 
+  Stack<int> peekmeFail(1);    
+  cout << "Peeking with nothing there " << peekmeFail.peek() << endl;
+  
   return 0;
 }
 

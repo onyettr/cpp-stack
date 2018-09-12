@@ -1,6 +1,8 @@
 * cpp-stack tasks
+** DONE Add size function
 ** TODO test harness as library
+** DONE add seperate test harness elements
 ** DONE Convert to Templates
 
 * Issues
-** TODO pop uses return 0, this is not correct when using Stack<T>
+** DONE pop uses return 0, this is not correct when using Stack<T>
