@@ -1,5 +1,5 @@
 /**
- *	@file    test_peek.cpp
+ *	@file    test_pop.cpp
  *	@brief   simple c++ stack test harness
  *	@author
  *	@note
@@ -58,44 +58,63 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
-/**
- * @function static int test_peek ( void )
- *
- * @brief    Stack peek test
- * @param    None
- * @note     
- */
-static int test_peek ( void )
+static int test_pop ( void )
 {
-  Stack<int> peekme(3);  
+  cout << "test_pop - stack" << endl;
 
-  cout << "test_peek - peeking" << endl;
+  Stack<int>   MyStack(5);
 
+  MyStack.push(100);
+  MyStack.push(200);
+  MyStack.push(300);
+  MyStack.push(700);
+
+  MyStack.StackDump(0);
+
+  cout << "test_pop - <char> stack 700 = " << MyStack.pop() << endl;
+  cout << "test_pop - <char> stack 300 = " << MyStack.pop() << endl;
+  cout << "test_pop - <char> stack 200 = " << MyStack.pop() << endl;
+  //  cout << "test_pop - <char> stack 100 = " << MyStack.pop() << endl;
+  MyStack.StackDump(0);
+  
 #if 0  
-  cout << "Peeking with nothing there " << peekme.peek() << endl;
-#endif
-  peekme.push(2001);
-  peekme.push(2002);
-  peekme.push(2003);
+  Stack<char>  MyCharStack(5);
 
-  peekme.StackDump(0);
-  cout << "Peeking with something there 2003 = " << peekme.peek() << endl;
+  MyCharStack.push('A');
+  MyCharStack.push('B');
+  MyCharStack.push('C');
+  MyCharStack.push('D');
+
+  MyCharStack.StackDump(0);
+  MyCharStack.StackEmpty();
+
+  cout << "test_push - create <float> stack" << endl;
+
+  Stack<float>  MyFloatStack(5);
+
+  MyFloatStack.push(1.2);
+  MyFloatStack.push(2.3);
+  MyFloatStack.push(3.4);
+  MyFloatStack.push(4.5);
+
+  MyFloatStack.StackDump(0);
+  MyFloatStack.StackEmpty();
+
+  cout << "test01c - pop <int> stack" << endl;
+  MyStack.pop();
+  MyStack.pop();
+  MyStack.pop();
+  MyStack.StackDump(0);
+#endif
 
   return 0;
 }
 
-/**
- * @function int test_run_peek( void ) {
- *
- * @brief    run the test harness
- * @param    None
- * @note     
- */
-int test_run_peek( void ) {
+int test_run_pop( void ) {
   int error_code = 0;
 
   try {
-    error_code  = test_peek();    /* Run one of the tests */
+    error_code  = test_pop();    /* Run one of the tests */
   } catch (std::runtime_error& e) {
     cout << "Exception: " << e.what() << endl;
   } catch(...) {

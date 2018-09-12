@@ -89,10 +89,10 @@ class Stack
      int  StackMax;              // Stack Maximum size
      e_stack_policy_t StackPolicy; 
    public:
-     ~Stack();                   // dtor
+     ~Stack();                   
 
      /*!> Constructor for the Stack */
-     Stack(int elements=0);      // ctor
+     Stack(int elements=0);      
 
     // Member functions
     /*!> \fn         int pop(void);          */

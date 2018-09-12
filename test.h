@@ -15,6 +15,7 @@ Includes
 #ifndef __TEST_H__
 #define __TEST_H__
 
+int test_run_pop      (void);
 int test_run_push     (void);
 int test_run_peek     (void);
 int test_run_empty    (void);
