@@ -60,7 +60,7 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 int test_display ( void )
 {
-  cout << "test_display - Stack Display" << endl;
+  cout << "*** test_display - Stack Display" << endl;
 
   Stack<int> overload(5);
 

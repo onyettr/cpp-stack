@@ -60,7 +60,7 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 int test_underflow ( void )
 {
-  cout << "test_underflow - Stack underflow" << endl;
+  cout << "*** test_underflow - Stack underflow" << endl;
 
   Stack<int> overload(2);
   overload.push(101);

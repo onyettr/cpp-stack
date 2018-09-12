@@ -61,7 +61,7 @@ Prototypes of all functions contained in this file (in order of occurance)
 int test_overflow ( void )
 {
   // Sign on
-  cout << "test_overflow - Stack overflow" << endl;
+  cout << "*** test_overflow - Stack overflow" << endl;
 
   Stack<int> overload(2);
   overload.push(100);

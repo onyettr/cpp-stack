@@ -60,24 +60,21 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 static int test_pop ( void )
 {
-  cout << "test_pop - stack" << endl;
+  cout << "*** test_pop - stack" << endl;
 
-  Stack<int>   MyStack(5);
+  Stack<int>   MyIntStack(5);
 
-  MyStack.push(100);
-  MyStack.push(200);
-  MyStack.push(300);
-  MyStack.push(700);
+  MyIntStack.push(100);
+  MyIntStack.push(200);
+  MyIntStack.push(300);
+  MyIntStack.push(700);
 
-  MyStack.StackDump(0);
-
-  cout << "test_pop - <char> stack 700 = " << MyStack.pop() << endl;
-  cout << "test_pop - <char> stack 300 = " << MyStack.pop() << endl;
-  cout << "test_pop - <char> stack 200 = " << MyStack.pop() << endl;
-  //  cout << "test_pop - <char> stack 100 = " << MyStack.pop() << endl;
-  MyStack.StackDump(0);
+  cout << "\ttest_pop - <int> stack 700 = " << MyIntStack.pop() << endl;
+  cout << "\ttest_pop - <int> stack 300 = " << MyIntStack.pop() << endl;
+  cout << "\ttest_pop - <int> stack 200 = " << MyIntStack.pop() << endl;
+  cout << "\ttest_pop - <int> stack 100 = " << MyIntStack.pop() << endl;
+  MyIntStack.StackDump(0);
   
-#if 0  
   Stack<char>  MyCharStack(5);
 
   MyCharStack.push('A');
@@ -85,10 +82,11 @@ static int test_pop ( void )
   MyCharStack.push('C');
   MyCharStack.push('D');
 
+  cout << "\ttest_pop - <char> stack D = " << MyCharStack.pop() << endl;
+  cout << "\ttest_pop - <char> stack C = " << MyCharStack.pop() << endl;
+  cout << "\ttest_pop - <char> stack B = " << MyCharStack.pop() << endl;
+  cout << "\ttest_pop - <char> stack A = " << MyCharStack.pop() << endl;
   MyCharStack.StackDump(0);
-  MyCharStack.StackEmpty();
-
-  cout << "test_push - create <float> stack" << endl;
 
   Stack<float>  MyFloatStack(5);
 
@@ -96,16 +94,11 @@ static int test_pop ( void )
   MyFloatStack.push(2.3);
   MyFloatStack.push(3.4);
   MyFloatStack.push(4.5);
-
+  cout << "\ttest_pop - <float> stack 4.5 = " << MyFloatStack.pop() << endl;
+  cout << "\ttest_pop - <float> stack 3.4 = " << MyFloatStack.pop() << endl;
+  cout << "\ttest_pop - <float> stack 2.3 = " << MyFloatStack.pop() << endl;
+  cout << "\ttest_pop - <float> stack 1.2 = " << MyFloatStack.pop() << endl;
   MyFloatStack.StackDump(0);
-  MyFloatStack.StackEmpty();
-
-  cout << "test01c - pop <int> stack" << endl;
-  MyStack.pop();
-  MyStack.pop();
-  MyStack.pop();
-  MyStack.StackDump(0);
-#endif
 
   return 0;
 }

@@ -60,7 +60,7 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 int test_size ( void )
 {
-  cout << "test_size" << endl;
+  cout << "*** test_size" << endl;
 
   Stack<int>   MyStack(5);
 
@@ -71,15 +71,16 @@ int test_size ( void )
 
   MyStack.StackDump(0);
 
-  cout << "test_size:           " << MyStack.StackSize() << endl;
+  cout << "\ttest_size:           " << MyStack.StackSize() << endl;
 
-  cout << "test_size: " << MyStack.pop() << "after pop #1 = " << MyStack.StackSize() << endl;  
-  cout << "test_size: " << MyStack.pop() << "after pop #2 = " << MyStack.StackSize() << endl;  
-  cout << "test_size: " << MyStack.pop() << "after pop #3 = " << MyStack.StackSize() << endl;
-  cout << "test_size: " << MyStack.pop() << "after pop #4 = " << MyStack.StackSize() << endl;
-#if 1
-  cout << "test_size: " << MyStack.pop() << "after pop #5 = " << MyStack.StackSize() << endl;
-#endif  
+  cout << "\ttest_size: " << MyStack.pop() << " after pop #1 = " << MyStack.StackSize() << endl;  
+  cout << "\ttest_size: " << MyStack.pop() << " after pop #2 = " << MyStack.StackSize() << endl;  
+  cout << "\ttest_size: " << MyStack.pop() << " after pop #3 = " << MyStack.StackSize() << endl;
+  cout << "\ttest_size: " << MyStack.pop() << " after pop #4 = " << MyStack.StackSize() << endl;
+  /*
+   * Test will fail here as we are empty
+   */
+  cout << "\ttest_size: " << MyStack.pop() << " after pop #5 = " << MyStack.StackSize() << endl;
 
  return 0;
 }

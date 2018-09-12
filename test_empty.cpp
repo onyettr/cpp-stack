@@ -61,33 +61,33 @@ Prototypes of all functions contained in this file (in order of occurance)
 
 int test_empty ( void )
 {
-  cout << "test_empty - iSEmpty unit test" << endl;
+  cout << "*** test_empty - isEmpty unit test" << endl;
 
   Stack<int> empty(3);
 
-  cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
+  cout << "\tEmpty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
   empty.push(111);
-  cout << "Empty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
+  cout << "\tEmpty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
   Stack<int> S(2);
 
   S.StackDump(0);
-  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+  cout << "\tEmpty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
   
   S.push(222);
   S.push(333); 
   S.StackDump(0);
 
-  cout << "test07 - Setting stack to empty" << endl;
+  cout << "*** test_empty - Setting stack to empty" << endl;
   S.StackEmpty();
   S.StackDump(0);
-  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+  cout << "\tEmpty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
   S.push(444);
   S.StackDump(0);
-  cout << "Empty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
+  cout << "\tEmpty = " << (S.isEmpty() == true ? "TRUE" : "FALSE") << endl;  
 
-  cout << "test_empty - Ends" << endl;
+  cout << "*** test_empty - Ends" << endl;
 
   return 0;
 }
