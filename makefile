@@ -8,6 +8,9 @@ SRC_DIR		= 	.
 OBJECT_DIR	= 	$(SRC_DIR)/object
 MAKE_DIR_CMD	= 	mkdir $(OBJECT_DIR)
 
+#*******************************************************************************
+# Tools required
+#*******************************************************************************
 CC    		=	g++
 LINK  		=	g++
 DEBUG 		=	-g
@@ -18,21 +21,19 @@ CHECK		= 	cppcheck
 CHECK_FLAGS	= 	--language=c++ --enable=all
 
 # -DDEBUG_TRACE	Will turn on deep trace per function
-# -DEXCEPTION	Will use the real exceptions with the 'try' that's in the test harness
 #CFLAGS += -DDEBUG_TRACE
-CFLAGS 		+= 	-DEXCEPTION
 
 # Build objects
 OBJS  = 	$(OBJECT_DIR)/main.o 	 		\
-		$(OBJECT_DIR)/test_pop.o		\
-		$(OBJECT_DIR)/test_push.o 		\
-		$(OBJECT_DIR)/test_peek.o 		\
-		$(OBJECT_DIR)/test_size.o 		\
-		$(OBJECT_DIR)/test_empty.o 		\
-		$(OBJECT_DIR)/test_display.o		\
-		$(OBJECT_DIR)/test_overflow.o 		\
-		$(OBJECT_DIR)/test_underflow.o
-
+			$(OBJECT_DIR)/test_pop.o		\
+			$(OBJECT_DIR)/test_push.o 		\
+			$(OBJECT_DIR)/test_peek.o 		\
+			$(OBJECT_DIR)/test_size.o 		\
+			$(OBJECT_DIR)/test_empty.o 		\
+			$(OBJECT_DIR)/test_display.o	\
+			$(OBJECT_DIR)/test_overflow.o 	\
+			$(OBJECT_DIR)/test_underflow.o
+	
 LIBS  = libstack.a
 
 #*******************************************************************************
