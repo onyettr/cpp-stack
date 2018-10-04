@@ -1,0 +1,75 @@
+#*******************************************************************************
+# File name        : makeile.gtest
+# File description : C++ Simple Stack using google test CPP test framework
+# Author           : ronyett
+#*******************************************************************************
+
+SRC_DIR		= 	.
+OBJECT_DIR	= 	$(SRC_DIR)/object
+MAKE_DIR_CMD	= 	mkdir $(OBJECT_DIR)
+
+GTEST_DIR	= 	$(SRC_DIR)/googletest
+GTEST_SRC_DIR	= 	$(GTEST_DIR)/src
+
+CC    		=	g++
+LINK  		=	g++
+DEBUG 		=	-g
+CFLAGS		=	-c -Wall -pedantic -pthread -I $(GTEST_DIR)/include -I $(GTEST_DIR)	
+LFLAGS		=			
+
+# -DDEBUG_TRACE	Will turn on deep trace per function
+#CFLAGS 	+=   	 -DDEBUG_TRACE
+
+# Build objects
+GTEST_OBJS	= 	$(OBJECT_DIR)/gtest-all.o		\
+			$(OBJECT_DIR)/gtest_main.o
+
+UNIT_TEST_OBJS	= 	$(OBJECT_DIR)/test_unittest.o
+
+GTEST_LIB  	= 	libgtest.a
+
+GTEST_EXE	=	gtest.exe
+
+#*******************************************************************************
+# Build targets:
+# all	Creates object directory, builds executable and runs checker
+# lib	Build only the list library, no test harness
+#*******************************************************************************
+all:	$(GTEST_EXE)
+
+lib:	$(GTEST_LIB)
+
+$(OBJECT_DIR):
+	-$(MAKE_DIR_CMD)
+
+$(GTEST_EXE):	$(GTEST_LIB) $(UNIT_TEST_OBJS)
+	$(LINK) $(LFLAGS) $(UNIT_TEST_OBJS) -L ./ -lpthread -lgtest -o gtest.exe
+	
+$(GTEST_LIB):	$(GTEST_OBJS)
+	$(AR) $(ARFLAGS) libgtest.a $(GTEST_OBJS)
+	
+$(OBJECT_DIR)/gtest_main.o:	$(GTEST_SRC_DIR)/gtest_main.cc
+	$(CC) $(CFLAGS) $(DEBUG) $(GTEST_SRC_DIR)/gtest_main.cc -o $(OBJECT_DIR)/gtest_main.o
+
+$(OBJECT_DIR)/gtest-all.o:	$(GTEST_SRC_DIR)/gtest-all.cc
+	$(CC) $(CFLAGS) $(DEBUG) $(GTEST_SRC_DIR)/gtest-all.cc -o $(OBJECT_DIR)/gtest-all.o
+
+$(OBJECT_DIR)/test_unittest.o:	 test_unittest.cpp
+	$(CC) $(CFLAGS) $(DEBUG) test_unittest.cpp -o $(OBJECT_DIR)/test_unittest.o
+
+$(OBJECT_DIR)/unittest_main.o:	 unittest_main.cpp
+	$(CC) $(CFLAGS) $(DEBUG) unittest_main.cpp -o $(OBJECT_DIR)/unittest_main.o
+
+clean:
+	rm -f core
+	rm -f $(GTEST_LIB)
+	rm -f gtest.exe
+	rm -f $(OBJECT_DIR)/test_unittest.o
+	rm -f $(OBJECT_DIR)/unittest_main.o	
+	rm -f $(OBJECT_DIR)/gtest-all.o		
+	rm -f $(OBJECT_DIR)/gtest_main.o
+
+#
+# Fin
+#
+
