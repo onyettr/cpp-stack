@@ -1,8 +1,11 @@
 * cpp-stack tasks
 ** DONE Add size function
 ** TODO test harness as library
+** TODO convert to use linked list
+** TODO [LIST] Push should use push(T const& data) (const correctness)
 ** DONE add seperate test harness elements
-** DONE Convert to Templates
+** TODO Convert to Templates
+** TODO Add Googletest framework
 
 * Issues
 ** DONE pop uses return 0, this is not correct when using Stack<T>
