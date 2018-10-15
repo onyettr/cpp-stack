@@ -77,7 +77,8 @@ class StackUnderFlowExcep {
 };
 
 /**
- * @brief Stack class
+ * @brief The <code>Stack</code> class
+ * @tparam T type of stack 
  */ 
 template <class T>
 class Stack
@@ -95,7 +96,7 @@ class Stack
 
       // Member functions
       /**
-       * @function     <T> pop(void);          
+       * @fn           <T> pop(void);          
        * @brief        Pull top of stack and return
        * @param        none
        * @note         
@@ -103,7 +104,7 @@ class Stack
       T   pop(void);               // pop off the stack
 
       /** 
-       * @function     <T> peek(void);         
+       * @fn           <T> peek(void);         
        * @brief        "Peek" the top of the stack and return, do not "pop"
        * @param        none
        * @note         none
@@ -111,36 +112,36 @@ class Stack
       T   peek(void);              // Quick peek at the top of the stack
 
       /**
-       * @function     void push(<T> element);      
+       * @fn           void push(<T> element);      
        * @brief        Push element to stack
-       * @param        const <T>& element to be pushed to Stack
+       * @param        element - to be pushed to Stack
        * @note         none
        */
       void push(const T&);         // push new element
 
       /**
-       * @function     void StackDump(int num
+       * @fn           void StackDump(int num)
        * @brief        Dump the Stack 
-       * @param        int num
+       * @param        void
        */
       void StackDump(int num);     // Debug routines
   
       /**
-       * @function     void StackEmpty(void)
+       * @fn           void StackEmpty(void)
        * @brief        Clear all of the stack, do not delete
-       * @param        int num
+       * @param        none
        */
       void StackEmpty(void);       // Clear stack
 
       /**
-       * @function   bool isEmpty(void);  
+       * @fn         bool isEmpty(void);  
        * @brief      Test if Stack is empty or not  
        * @param      none
        */
       bool isEmpty(void);          // Test if empty
 
       /**
-       * @function   int StackSize(void)
+       * @fn         int StackSize(void)
        * @brief      Return depth of the stack
        * @param      none
        */

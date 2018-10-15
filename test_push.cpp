@@ -81,7 +81,6 @@ int test_push ( void )
   MyCharStack.push('D');
 
   MyCharStack.StackDump(0);
-  MyCharStack.StackEmpty();
 
   cout << "test_push - create <float> stack" << endl;
 
@@ -93,14 +92,7 @@ int test_push ( void )
   MyFloatStack.push(4.5);
 
   MyFloatStack.StackDump(0);
-  MyFloatStack.StackEmpty();
-#if 0
-  cout << "test01c - pop <int> stack" << endl;
-  MyStack.pop();
-  MyStack.pop();
-  MyStack.pop();
-  MyStack.StackDump(0);
-#endif
+
   cout << "test_push - Ends" << endl;
 
   return 0;

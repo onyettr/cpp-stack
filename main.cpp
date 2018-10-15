@@ -65,7 +65,7 @@ Prototypes of all functions contained in this file (in order of occurance)
  *
  * @param[in] None
  *
- * @return    None
+ * @return    int
  *
  * @note      Entry point
  */

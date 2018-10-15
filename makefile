@@ -24,17 +24,18 @@ CHECK_FLAGS	= 	--language=c++ --enable=all -igoogletest
 #CFLAGS += -DDEBUG_TRACE
 
 # Build objects
-OBJS  = 	$(OBJECT_DIR)/main.o 	 		\
+OBJS  = 							\
+			$(OBJECT_DIR)/main.o 	 		\
 			$(OBJECT_DIR)/test_pop.o		\
 			$(OBJECT_DIR)/test_push.o 		\
 			$(OBJECT_DIR)/test_peek.o 		\
 			$(OBJECT_DIR)/test_size.o 		\
 			$(OBJECT_DIR)/test_empty.o 		\
-			$(OBJECT_DIR)/test_display.o	\
-			$(OBJECT_DIR)/test_overflow.o 	\
+			$(OBJECT_DIR)/test_display.o		\
+			$(OBJECT_DIR)/test_overflow.o 		\
 			$(OBJECT_DIR)/test_underflow.o
-	
-LIBS  = libstack.a
+
+LIBS  		= 	libstack.a
 
 #*******************************************************************************
 # Build targets:
@@ -47,6 +48,9 @@ lib:	$(LIBS)
 
 splint-me:
 	$(CHECK) $(CHECK_FLAGS) .
+
+doxygen:
+	(cat Doxyfile; echo "INPUT=stack.cpp") | doxygen -
 
 $(OBJECT_DIR):
 	-$(MAKE_DIR_CMD)

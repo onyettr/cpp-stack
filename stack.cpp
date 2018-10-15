@@ -60,14 +60,14 @@ Prototypes of all functions contained in this file (in order of occurance)
 */
 
 /**
- * @function  Stack::Stack(int elements)
+ * @fn        Stack::Stack(int elements)
  *
  * @brief     Stack ctor
  *
- * @param[in] int size  - number of stack elements to allocate
+ * @param[in] size  - number of stack elements to allocate
  *
  * @return    None
- *
+ * @throw     runtime_error
  * @note      Entry point
  */
 template <class T>
@@ -88,13 +88,13 @@ Stack<T>::Stack(int size) {
 }
 
 /**
- * @function  Stack::~Stack
+ * @fn        Stack::~Stack
  *
  * @brief     Stack dtor
  *
  * @param[in] none
  *
- * @return    None
+ * @return    void
  *
  * @note      dtor
  */
@@ -111,12 +111,12 @@ Stack<T>::~Stack() {
 }
 
 /**
- * @function  <T> Stack::pop(void) {
+ * @fn        <T> Stack::pop(void) {
  *
  * @brief     Stack pop operation
  *
- * @param[in] none
- *
+ * @param[in] void
+ * @throw     runtime_error
  * @return    Top of the stack
  *
  * @note      
@@ -139,12 +139,12 @@ T Stack<T>::pop(void) {
 }
 
 /**
- * @function  <T> Stack::peek(void)
+ * @fn        <T> Stack::peek(void)
  *
  * @brief     Stack peek operation
  *
  * @param[in] none
- *
+ * @throw     runtime_error
  * @return    return Top of the stack
  *
  * @note      
@@ -163,12 +163,12 @@ T Stack<T>::peek(void) {
 }
     
 /**
- * @function  void Stack::push(T element) 
+ * @fn        void Stack::push(T element) 
  *
  * @brief     Stack push element
  *
- * @param[in] T element
- *
+ * @param[in] element 
+ * @throw     runtime_error
  * @return    none
  *
  * @note      
@@ -190,7 +190,7 @@ void Stack<T>::push(const T& element) {
 }
 
 /**
- * @function  bool Stack::isEmpty(void)
+ * @fn        bool Stack::isEmpty(void)
  *
  * @brief     Stack is stack empty?
  *
@@ -212,7 +212,7 @@ bool Stack<T>::isEmpty(void) {
 }
   
 /**
- * @function  void Stack::StackEmpty(void) 
+ * @fn        void Stack::StackEmpty(void) 
  *
  * @brief     Stack is set to empty
  *
@@ -232,7 +232,7 @@ void Stack<T>::StackEmpty(void) {
 }
 
 /**
- * @function  int Stack::StackSize(void) 
+ * @fn        int Stack::StackSize(void) 
  *
  * @brief     Stack depth
  *
@@ -252,11 +252,11 @@ int Stack<T>::StackSize(void) const {
 }
 
 /**
- * @function  void Stack::StackDump(int num) 
+ * @fn        void Stack::StackDump(int num) 
  *
  * @brief     Stack output
  *
- * @param[in] int num  - deprecated for now, will allow for number of entries to be output. 
+ * @param[in] num  - deprecated for now, will allow for number of entries to be output. 
  *
  * @return    none
  *
