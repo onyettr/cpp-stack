@@ -1,7 +1,7 @@
 /**
  *	@file    test_peek.cpp
  *	@brief   simple c++ stack test harness
- *	@author
+ *	@author  ronyett
  *	@note
  */
 
@@ -59,10 +59,9 @@ Prototypes of all functions contained in this file (in order of occurance)
 */
 
 /**
- * @function static int test_peek ( void )
+ * @fn       static int test_peek ( void )
  *
  * @brief    Stack peek test
- * @param    None
  * @note     
  */
 static int test_peek ( void )
@@ -85,10 +84,9 @@ static int test_peek ( void )
 }
 
 /**
- * @function int test_run_peek( void ) {
+ * @fn       int test_run_peek( void ) {
  *
- * @brief    run the test harness
- * @param    None
+ * @brief    run the test harness for peek
  * @note     
  */
 int test_run_peek( void ) {

@@ -1,7 +1,7 @@
 /**
  *	@file    main.cpp
  *	@brief   simple c++ stack main harness
- *	@author
+ *	@author  ronyett
  *	@note	
  */
 
@@ -59,21 +59,19 @@ Prototypes of all functions contained in this file (in order of occurance)
 */
 
 /**
- * @function  int main(void)
+ * @fn        int main(void)
  *
  * @brief     entry point
  *
- * @param[in] None
- *
  * @return    int
  *
- * @note      Entry point
+ * @note      Entry point, launches the test harness
  */
 int main ( void )
 {
   // Sign on
   cout << "C++ Examples Simple Stack Class" << endl; 
-
+#if 0
   test_run_display();
   test_run_push();
   test_run_pop ();
@@ -82,6 +80,8 @@ int main ( void )
   test_run_peek();
   test_run_overflow();
   test_run_underflow();
+#endif
+  test_run_empty();  
   //  poortool_init();
 }
 

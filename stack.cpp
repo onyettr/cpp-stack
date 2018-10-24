@@ -1,7 +1,7 @@
 /**
  *	@file    stack.cpp
  *	@brief   simple c++ stack implementation
- *	@author
+ *	@author  ronyett
  *	@note	
  */
 
@@ -60,14 +60,15 @@ Prototypes of all functions contained in this file (in order of occurance)
 */
 
 /**
- * @fn        Stack::Stack(int elements)
+ * @fn        Stack::Stack(int size)
  *
  * @brief     Stack ctor
  *
  * @param[in] size  - number of stack elements to allocate
- *
+ * @tparam    T type of Stack elements
+ * @throw     std::runtime_error - memory allocation fails
+ *            std::runtime_error - Stack size is 0
  * @return    None
- * @throw     runtime_error
  * @note      Entry point
  */
 template <class T>
@@ -76,13 +77,17 @@ Stack<T>::Stack(int size) {
   cout << "<" << this << ">TRACE: Stack Constructor called, size " << size << endl;  
 #endif
 
+  if ( size == 0) {
+    throw std::runtime_error("Stack<T> - Stack Size is 0");    
+  }
+   
   StackCount  = 0;
   StackMax    = size;
   StackTop    = -1;
   StackPolicy = e_fifo;
 
   pStack = new T[size];
-  if ( pStack == NULL ) {
+  if ( pStack == NULL || size == 0) {
     throw std::runtime_error("Stack<T> - failure to allocate memory");    
   }
 }
@@ -91,9 +96,6 @@ Stack<T>::Stack(int size) {
  * @fn        Stack::~Stack
  *
  * @brief     Stack dtor
- *
- * @param[in] none
- *
  * @return    void
  *
  * @note      dtor
@@ -115,8 +117,7 @@ Stack<T>::~Stack() {
  *
  * @brief     Stack pop operation
  *
- * @param[in] void
- * @throw     runtime_error
+ * @throw     std::runtime_error - stack is empty
  * @return    Top of the stack
  *
  * @note      
@@ -143,7 +144,6 @@ T Stack<T>::pop(void) {
  *
  * @brief     Stack peek operation
  *
- * @param[in] none
  * @throw     runtime_error
  * @return    return Top of the stack
  *
@@ -163,12 +163,12 @@ T Stack<T>::peek(void) {
 }
     
 /**
- * @fn        void Stack::push(T element) 
+ * @fn        void Stack<T>::push(const T& element) 
  *
  * @brief     Stack push element
  *
  * @param[in] element 
- * @throw     runtime_error
+ * @throw     std::runtime_error Stack is Full
  * @return    none
  *
  * @note      
@@ -176,25 +176,23 @@ T Stack<T>::peek(void) {
 template <class T>
 void Stack<T>::push(const T& element) {
 #if defined ( DEBUG_TRACE )
-  cout << "<" << this << ">TRACE: push called"  << endl;  
-  cout << "Top = " << StackTop << "StackMax = " << StackMax << endl;
+   cout << "<" << this << ">TRACE: push called"  << endl;  
+   cout << "Top = " << StackTop << "StackMax = " << StackMax << endl;
 #endif
 
-  if ( (StackTop+1) == StackMax ) {
-    throw std::runtime_error("Stack<T>::push - stack is full");    
-  } else {
-    ++StackTop;
-    ++StackCount;
-    pStack[StackTop] = element;
-  }
+   if ( (StackTop+1) == StackMax ) {
+      throw std::runtime_error("Stack<T>::push - stack is full");    
+   } else {
+      ++StackTop;
+      ++StackCount;
+      pStack[StackTop] = element;
+   }
 }
 
 /**
  * @fn        bool Stack::isEmpty(void)
  *
  * @brief     Stack is stack empty?
- *
- * @param[in] none
  *
  * @return    TRUE is empty, FALSE otherwise
  *
@@ -216,8 +214,6 @@ bool Stack<T>::isEmpty(void) {
  *
  * @brief     Stack is set to empty
  *
- * @param[in] none
- *
  * @return    none
  *
  * @note      
@@ -235,8 +231,6 @@ void Stack<T>::StackEmpty(void) {
  * @fn        int Stack::StackSize(void) 
  *
  * @brief     Stack depth
- *
- * @param[in] none
  *
  * @return    int Depth of Stack
  *

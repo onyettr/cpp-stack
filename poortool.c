@@ -1,5 +1,5 @@
 /**
- *	@file    poortool.cpp
+ *	@file    poortool.c
  *	@brief   simple command line monitor
  *	@author
  *	@note	
@@ -95,11 +95,9 @@ static BOOL GetCLI(void);
 void poortool_Init(void);
 
 /**
- * @function  static int pollkey(void)
+ * @fn        static int pollkey(void)
  *
  * @brief     test for a keypress
- *
- * @param[in] None
  *
  * @return    int
  *
@@ -129,15 +127,15 @@ static int pollkey(void)
 }
 
 /**
- * @function   static int io_read(uint8_t* prompt, char* buffer,long buflen)
+ * @fn         static int io_read(uint8_t* prompt, char* buffer,long buflen)
  *
  * @brief      read input buffer from keyboard
  *
- * @param[in]  uint8_t *prompt  - String containing the prompt
- * @param[out] char    *buffer  - Return string containing keypress entries
- * @param[in]  uint32_t buflen  - length of return buffer
+ * @param[in]  *prompt  - String containing the prompt
+ * @param[out] *buffer  - Return string containing keypress entries
+ * @param[in]  buflen   - length of return buffer
  *
- * @return    int
+ * @return    cnt of characters
  *
  * @note      Gathers the keypresses
  */
@@ -154,14 +152,14 @@ static int io_read(unsigned char* prompt, char* buffer,long buflen)
 }
 
 /**
- * @function   static BOOL match(uint8_t *str1,const uint8_t *str2)
+ * @fn         static BOOL match(uint8_t *str1,const uint8_t *str2)
  *
  * @brief      match two strings
  *
- * @param[in]  uint8_t *str1    - First string to compare agaisnt str2
- * @param[in]  uint8_t *str2    - Compare to str1
+ * @param[in]  *str1    - First string to compare agaisnt str2
+ * @param[in]  *str2    - Compare to str1
  *
- * @return     BOOL - TRUE if there is a match, FALSE if not
+ * @return     TRUE if there is a match, FALSE if not
  *
  * @note       Compares str1 with str2
  */
@@ -181,13 +179,13 @@ static BOOL match(char *str1,const char *str2)
 }
 
 /**
- * @function   static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
+ * @fn         static void GetCommandLine(char *Buffer, int *cargc,char *cargv[])
  *
  * @brief      Get the command line from a string 
  *
- * @param[in]  uint8_t *Buffer  - Raw command line to parse
- * @param[out] int     *cargc   - Return the number of arguments found
- * @param[out] uint8_t *cargv[] - Each argument is placed into an entry
+ * @param[in]  *Buffer  - Raw command line to parse
+ * @param[out] *cargc   - Return the number of arguments found
+ * @param[out] *cargv[] - Each argument is placed into an entry
  *
  * @return     None
  *
@@ -212,12 +210,12 @@ static void GetCommandLine(char *Buffer, int *cargc, char *cargv[])
 }
 
 /**
- * @function   static BOOL Eval(char string[], long int *result)
+ * @fn         static BOOL Eval(char string[], long int *result)
  *
  * @brief      Convert the text string into dec, bin or hex.
  *
- * @param[in]  uint8_t string[] - Raw command line to convert
- * @param[out] uint32_t *result - Returned numeric value
+ * @param[in]  string  - Raw command line to convert
+ * @param[out] *result - Returned numeric value
  *
  * @return     BOOL
  *

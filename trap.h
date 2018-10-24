@@ -1,6 +1,10 @@
 #if !defined(__TRAP_H__)
 #define __TRAP_H__
 
+/**
+ * @enum  stack_exception
+ * @brief stack exception values
+ */
 typedef enum stack_exception {
   e_stackoverflow        = 100,
   e_stackunderflow       = 200,

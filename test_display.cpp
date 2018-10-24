@@ -1,5 +1,5 @@
 /**
- *	@file    test_diaplay.cpp
+ *	@file    test_display.cpp
  *	@brief   simple c++ stack test harness
  *	@author
  *	@note

@@ -77,7 +77,7 @@ class StackUnderFlowExcep {
 };
 
 /**
- * @brief The <code>Stack</code> class
+ * The <code>Stack</code> class
  * @tparam T type of stack 
  */ 
 template <class T>
@@ -92,13 +92,12 @@ class Stack
    public:
       ~Stack();                   
 
-      Stack(int elements=0);      
+      Stack(int size=0);      
 
       // Member functions
       /**
        * @fn           <T> pop(void);          
        * @brief        Pull top of stack and return
-       * @param        none
        * @note         
        */
       T   pop(void);               // pop off the stack
@@ -106,7 +105,6 @@ class Stack
       /** 
        * @fn           <T> peek(void);         
        * @brief        "Peek" the top of the stack and return, do not "pop"
-       * @param        none
        * @note         none
        */
       T   peek(void);              // Quick peek at the top of the stack
@@ -117,33 +115,30 @@ class Stack
        * @param        element - to be pushed to Stack
        * @note         none
        */
-      void push(const T&);         // push new element
-
+      void push(const T& element); // push new element
+  
       /**
        * @fn           void StackDump(int num)
        * @brief        Dump the Stack 
-       * @param        void
+       * @param        num - of entries to be output
        */
       void StackDump(int num);     // Debug routines
   
       /**
        * @fn           void StackEmpty(void)
        * @brief        Clear all of the stack, do not delete
-       * @param        none
        */
       void StackEmpty(void);       // Clear stack
 
       /**
        * @fn         bool isEmpty(void);  
        * @brief      Test if Stack is empty or not  
-       * @param      none
        */
       bool isEmpty(void);          // Test if empty
 
       /**
        * @fn         int StackSize(void)
        * @brief      Return depth of the stack
-       * @param      none
        */
       int StackSize(void) const;    // Size of stack
 };

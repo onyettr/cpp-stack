@@ -24,14 +24,27 @@ class StackTest : public testing::Test {
   //  Stack<int>  MyStack_;
 };
 
+static void Declaration(void)
+{
+  Stack<int> MyStack;        
+}
+  
 /**
  * @brief StackTest SIZE
  */
 TEST_F(StackTest, StackSizeIsZero) {
-  Stack<int> MyStack(5);
-
-  // Test Empty Stack
-  EXPECT_EQ(0, MyStack.StackSize());
+  try {
+    Declaration();
+  }
+  catch (std::runtime_error& e) {
+    EXPECT_EQ(e.what(), std::string("Stack<T> - Stack Size is 0"));
+    cout << e.what() << endl;
+    return;
+  }
+  catch (...) {
+    FAIL() << "odd exception?";
+  }
+  ADD_FAILURE() << "Exception not thrown as expected";
 }
 
 TEST_F(StackTest, StackIsEmpty) {

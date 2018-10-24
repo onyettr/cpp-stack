@@ -11,11 +11,11 @@
 using namespace std;
 
 /**
- * @function  void Thrower(stack_exception_t exp)
+ * @fn        void Thrower(stack_exception_t exp)
  *
  * @brief     Thrower of exceptions
  *
- * @param[in] stack_exception_t exp - the exception type
+ * @param[in] exp - the exception type
  *
  * @return    None
  *
