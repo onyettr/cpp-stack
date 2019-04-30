@@ -77,6 +77,7 @@ int test_size ( void )
   cout << "\ttest_size: " << MyStack.pop() << " after pop #2 = " << MyStack.StackSize() << endl;  
   cout << "\ttest_size: " << MyStack.pop() << " after pop #3 = " << MyStack.StackSize() << endl;
   cout << "\ttest_size: " << MyStack.pop() << " after pop #4 = " << MyStack.StackSize() << endl;
+
   /*
    * Test will fail here as we are empty
    */

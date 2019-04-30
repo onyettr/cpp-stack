@@ -58,13 +58,17 @@ Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
 
+static void test_empty_size (void)
+{
+  cout << "\tnoElements, Generate exception" << endl;  
+  Stack<int> noElements;
+}
 
 int test_empty ( void )
 {
   cout << "*** test_empty - isEmpty unit test" << endl;
 
   Stack<int> empty(3);
-
   cout << "\tEmpty = " << (empty.isEmpty() == true ? "TRUE" : "FALSE") << endl;
 
   empty.push(111);
@@ -94,7 +98,15 @@ int test_empty ( void )
 
 int test_run_empty( void ) {
   int error_code = 0;
-
+  
+  try {
+    test_empty_size();             /* Run one of the tests */
+  } catch (std::runtime_error& e) {
+    cout << "Exception: " << e.what() << endl;
+  } catch(...) {
+    cout << "Exception: ouch something bad went on = " << endl;
+  }
+  
   try {
     error_code  = test_empty();    /* Run one of the tests */
   } catch (std::runtime_error& e) {
