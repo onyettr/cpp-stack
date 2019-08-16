@@ -42,7 +42,7 @@ LIBS  		= 	libstack.a
 # all	Creates object directory, builds executable and runs checker
 # lib	Build only the list library, no test harness
 #*******************************************************************************
-all:	$(OBJECT_DIR) stack.exe splint-me paren.exe
+all:	$(OBJECT_DIR) stack.exe splint-me parencheck.exe
 
 lib:	$(LIBS)
 
