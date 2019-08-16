@@ -42,7 +42,7 @@ LIBS  		= 	libstack.a
 # all	Creates object directory, builds executable and runs checker
 # lib	Build only the list library, no test harness
 #*******************************************************************************
-all:	$(OBJECT_DIR) stack.exe splint-me
+all:	$(OBJECT_DIR) stack.exe splint-me paren.exe
 
 lib:	$(LIBS)
 
@@ -58,11 +58,17 @@ $(OBJECT_DIR):
 stack.exe:	$(OBJS) $(LIBS)
 	$(LINK) $(LFLAGS) $(OBJS) -L -lstack -o stack.exe
 
+parencheck.exe:	$(OBJECT_DIR)/parencheck.o $(LIBS)
+	$(LINK) $(LFLAGS) $(OBJECT_DIR)/parencheck.o -o parencheck.exe
+
 libstack.a:	
 #	$(AR) $(ARFLAGS) libstack.a $(OBJECT_DIR)/stack.o 
 
 $(OBJECT_DIR)/main.o:		main.cpp
 	$(CC) $(CFLAGS) $(DEBUG) main.cpp -o $(OBJECT_DIR)/main.o
+
+$(OBJECT_DIR)/parencheck.o:		parencheck.cpp stack.cpp
+	$(CC) $(CFLAGS) $(DEBUG) parencheck.cpp -o $(OBJECT_DIR)/parencheck.o
 
 #$(OBJECT_DIR)/stack.o:	stack.cpp stack.h
 #	$(CC) $(CFLAGS) $(DEBUG) stack.cpp -o $(OBJECT_DIR)/stack.o
@@ -97,9 +103,11 @@ $(OBJECT_DIR)/trap.o:		trap.cpp trap.h
 
 clean:
 	rm -f stack.exe
+	rm -f parencheck.exe
 	rm -f libstack.a
 	rm -f $(OBJECT_DIR)/stack.o
 	rm -f $(OBJECT_DIR)/main.o
+	rm -f $(OBJECT_DIR)/parencheck.o
 	rm -f $(OBJECT_DIR)/trap.o
 	rm -f $(OBJECT_DIR)/test_pop.o
 	rm -f $(OBJECT_DIR)/test_push.o

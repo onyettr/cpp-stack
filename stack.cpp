@@ -152,13 +152,17 @@ T Stack<T>::pop(void) {
 template <class T>
 T Stack<T>::peek(void) {
 #if defined ( DEBUG_TRACE )
-  cout << "<" << this << ">TRACE: peek  called"  << endl;  
+  cout << "<" << this << ">TRACE: peek  called";  
 #endif
 
   if ( isEmpty() ) {
     throw std::runtime_error("Stack<T>::peek - stack is empty");    
   }
 
+#if defined ( DEBUG_TRACE )
+  cout << " " << pStack[StackTop] << endl;  
+#endif
+  
   return pStack[StackTop];
 }
     
@@ -176,8 +180,8 @@ T Stack<T>::peek(void) {
 template <class T>
 void Stack<T>::push(const T& element) {
 #if defined ( DEBUG_TRACE )
-   cout << "<" << this << ">TRACE: push called"  << endl;  
-   cout << "Top = " << StackTop << "StackMax = " << StackMax << endl;
+   cout << "<" << this << ">TRACE: push called "  << "Top = " << StackTop << " StackMax = " << StackMax; 
+   cout << " " << element << endl;
 #endif
 
    if ( (StackTop+1) == StackMax ) {
