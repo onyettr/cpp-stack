@@ -125,7 +125,7 @@ Stack<T>::~Stack() {
 template <class T>
 T Stack<T>::pop(void) {
 #if defined ( DEBUG_TRACE )
-  cout << "<" << this << ">TRACE: pop  called"  << endl;  
+  cout << "<" << this << ">TRACE: pop  called";  
 #endif
 
   if ( isEmpty() ) {
@@ -134,6 +134,10 @@ T Stack<T>::pop(void) {
   else
   {
     StackCount--;
+
+#if defined ( DEBUG_TRACE )
+    cout << " Popped " << pStack[StackTop] << endl;  
+#endif
 
     return pStack[StackTop--];
   }
@@ -181,7 +185,7 @@ template <class T>
 void Stack<T>::push(const T& element) {
 #if defined ( DEBUG_TRACE )
    cout << "<" << this << ">TRACE: push called "  << "Top = " << StackTop << " StackMax = " << StackMax; 
-   cout << " " << element << endl;
+   cout << " Pushed= " << element << endl;
 #endif
 
    if ( (StackTop+1) == StackMax ) {
