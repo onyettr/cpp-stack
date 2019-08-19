@@ -118,7 +118,8 @@ int OperandExecute(int value1, int value2, char operand) {
    int j = 0;
   
    cout << "> ";
-   gets(commandline);
+   fgets(commandline, 20, stdin);
+   //   gets(commandline);   
 
    for (int i=0; i < (int)strlen(commandline); i++) {
     if (commandline[i] >= '0' && commandline[i] <= '9') {    /* Its a digit  */
@@ -144,7 +145,7 @@ int OperandExecute(int value1, int value2, char operand) {
     }
   }
 
-  cout << "Result = " << PostFixStack.peek();
+   cout << "Result = " << PostFixStack.peek() << endl;
 
   exit(0);
 }
