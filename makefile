@@ -21,7 +21,7 @@ CHECK		= 	cppcheck
 CHECK_FLAGS	= 	--language=c++ --enable=all -igoogletest
 
 # -DDEBUG_TRACE	Will turn on deep trace per function
-#CFLAGS += -DDEBUG_TRACE
+CFLAGS += -DDEBUG_TRACE
 
 # Build objects
 OBJS  = 							\
@@ -42,7 +42,7 @@ LIBS  		= 	libstack.a
 # all	Creates object directory, builds executable and runs checker
 # lib	Build only the list library, no test harness
 #*******************************************************************************
-all:	$(OBJECT_DIR) stack.exe splint-me paren.exe postfixexp.exe
+all:	$(OBJECT_DIR) stack.exe splint-me paren.exe postfixexp.exe prefixexp.exe
 
 lib:	$(LIBS)
 
@@ -63,6 +63,8 @@ parencheck.exe:	$(OBJECT_DIR)/parencheck.o $(LIBS)
 
 postfixexp.exe:	$(OBJECT_DIR)/postfixexp.o $(LIBS)
 	$(LINK) $(LFLAGS) $(OBJECT_DIR)/postfixexp.o -o postfixexp.exe
+prefixexp.exe:	$(OBJECT_DIR)/prefixexp.o $(LIBS)
+	$(LINK) $(LFLAGS) $(OBJECT_DIR)/prefixexp.o -o prefixexp.exe
 
 libstack.a:	
 #	$(AR) $(ARFLAGS) libstack.a $(OBJECT_DIR)/stack.o 
@@ -74,6 +76,8 @@ $(OBJECT_DIR)/parencheck.o:		parencheck.cpp stack.cpp
 	$(CC) $(CFLAGS) $(DEBUG) parencheck.cpp -o $(OBJECT_DIR)/parencheck.o
 $(OBJECT_DIR)/postfixexp.o:		postfixexp.cpp stack.cpp
 	$(CC) $(CFLAGS) $(DEBUG) postfixexp.cpp -o $(OBJECT_DIR)/postfixexp.o
+$(OBJECT_DIR)/prefixexp.o:		prefixexp.cpp stack.cpp
+	$(CC) $(CFLAGS) $(DEBUG) prefixexp.cpp -o $(OBJECT_DIR)/prefixexp.o
 
 #$(OBJECT_DIR)/stack.o:	stack.cpp stack.h
 #	$(CC) $(CFLAGS) $(DEBUG) stack.cpp -o $(OBJECT_DIR)/stack.o
@@ -110,11 +114,13 @@ clean:
 	rm -f stack.exe
 	rm -f parencheck.exe
 	rm -f postfixexp.exe
+	rm -f prefixexp.exe
 	rm -f libstack.a
 	rm -f $(OBJECT_DIR)/stack.o
 	rm -f $(OBJECT_DIR)/main.o
 	rm -f $(OBJECT_DIR)/parencheck.o
 	rm -f $(OBJECT_DIR)/postfixexp.o
+	rm -f $(OBJECT_DIR)/prefixexp.o
 	rm -f $(OBJECT_DIR)/trap.o
 	rm -f $(OBJECT_DIR)/test_pop.o
 	rm -f $(OBJECT_DIR)/test_push.o

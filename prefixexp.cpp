@@ -1,10 +1,10 @@
 /**
- *	@file    postfixexp.cpp
- *	@brief   simple c++ Postfix expresssion example
+ *	@file    prefixexp.cpp
+ *	@brief   simple c++ Prefix expresssion example
  *	@author  ronyett
  *	@note    *,/,+, - are the expression operators
  *               integers are value
- *               E.g. 2 3 + 
+ *               E.g. + 2 3
  */
 
 /*
@@ -60,7 +60,8 @@ Exported Global variables
 Prototypes of all functions contained in this file (in order of occurance)
 ******************************************************************************
 */
-Stack<int> PostFixStack(10);
+Stack<int>  PreFixStack(10);
+Stack<char> operandStack(10);
 
 /**
  * @brief     test for arithmetic op code
@@ -112,38 +113,53 @@ int OperandExecute(int value1, int value2, char operand) {
 }
 
  int main ( void ) {
-   cout << "Postfix Expression Example" << endl;
+   cout << "Prefix Expression Example" << endl;
    string commandline;
-  
+   int numberCount = 0;
+   
    cout << "> ";
-   //   fgets(commandline, 20, stdin);
    getline(cin, commandline);   
 
    for (int i=0; i < (int)commandline.length(); i++) {
      if (isdigit(commandline[i])) {                          /* Its a digit(s)  */
        int intvalue = 0;
+
+       if (operandStack.isEmpty()) {
+	 cout << "[ERR] no prefix operand !" << endl;
+	 break;
+       }
+
        while (i < (int)commandline.length() && isdigit(commandline[i])){
 	 intvalue = (intvalue * 10) + (commandline[i] -'0');
 	 i++;
        }
 
-       PostFixStack.push(intvalue);       
-     } else if (isOperator(commandline[i])) {                 /* Operand seen */
+       PreFixStack.push(intvalue);
+       numberCount++;
+     } else if (numberCount >= 1) {                          /* We can calulate */
        int value1 = 0;
        int value2 = 0;
        int result = 0;
        char operand;
 
-       value1 = PostFixStack.pop();
-       value2 = PostFixStack.pop();
-       operand= commandline[i];
+       value1 = PreFixStack.pop();
+       value2 = PreFixStack.pop();
+       operand= operandStack.pop();
 
        result = OperandExecute(value1, value2, operand);
-       PostFixStack.push(result);
+       PreFixStack.push(result);                              /* Leave result on the stack */
+       numberCount = 0;
+     } else if (isOperator(commandline[i])) {                 /* Operand seen */
+       if (numberCount <= 1) {
+	 operandStack.push(commandline[i]);
+       } else {
+	 cout << "[ERR] Too many operands!" << endl;
+	 break;
+       }
      }
    }
 
-   cout << "Result = " << PostFixStack.peek() << endl;
+   cout << "Result = " << PreFixStack.peek() << endl;
 
   exit(0);
 }
