@@ -136,7 +136,16 @@ int OperandExecute(int value1, int value2, char operand) {
 
        PreFixStack.push(intvalue);
        numberCount++;
-     } else if (numberCount >= 1) {                          /* We can calulate */
+     } else if (isOperator(commandline[i])) {                 /* Operand seen */
+       if (numberCount <= 1) {
+	 operandStack.push(commandline[i]);
+       } else {
+	 cout << "[ERR] Too many operands!" << endl;
+	 break;
+       }
+     }
+   }
+   if (numberCount >= 1) {                          /* We can calulate */
        int value1 = 0;
        int value2 = 0;
        int result = 0;
@@ -149,17 +158,9 @@ int OperandExecute(int value1, int value2, char operand) {
        result = OperandExecute(value1, value2, operand);
        PreFixStack.push(result);                              /* Leave result on the stack */
        numberCount = 0;
-     } else if (isOperator(commandline[i])) {                 /* Operand seen */
-       if (numberCount <= 1) {
-	 operandStack.push(commandline[i]);
-       } else {
-	 cout << "[ERR] Too many operands!" << endl;
-	 break;
-       }
-     }
    }
 
    cout << "Result = " << PreFixStack.peek() << endl;
 
-  exit(0);
+   exit(0);
 }
