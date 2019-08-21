@@ -160,7 +160,11 @@ int OperandExecute(int value1, int value2, char operand) {
        numberCount = 0;
    }
 
-   cout << "Result = " << PreFixStack.peek() << endl;
+   try {
+     cout << "Result = " << (PreFixStack.isEmpty() == false ? PreFixStack.peek() : 0) << endl;
+   }catch (std::runtime_error &e) {
+     cout << "Exception: " << e.what() << endl;     
+   }
 
    exit(0);
 }

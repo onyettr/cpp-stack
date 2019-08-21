@@ -21,7 +21,7 @@ CHECK		= 	cppcheck
 CHECK_FLAGS	= 	--language=c++ --enable=all -igoogletest
 
 # -DDEBUG_TRACE	Will turn on deep trace per function
-CFLAGS += -DDEBUG_TRACE
+#CFLAGS += -DDEBUG_TRACE
 
 # Build objects
 OBJS  = 							\
