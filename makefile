@@ -42,7 +42,8 @@ LIBS  		= 	libstack.a
 # all	Creates object directory, builds executable and runs checker
 # lib	Build only the list library, no test harness
 #*******************************************************************************
-all:	$(OBJECT_DIR) stack.exe splint-me paren.exe postfixexp.exe prefixexp.exe
+all:	$(OBJECT_DIR) stack.exe \
+	parencheck.exe postfixexp.exe prefixexp.exe calculator.exe
 
 lib:	$(LIBS)
 
@@ -65,6 +66,10 @@ postfixexp.exe:	$(OBJECT_DIR)/postfixexp.o $(LIBS)
 	$(LINK) $(LFLAGS) $(OBJECT_DIR)/postfixexp.o -o postfixexp.exe
 prefixexp.exe:	$(OBJECT_DIR)/prefixexp.o $(LIBS)
 	$(LINK) $(LFLAGS) $(OBJECT_DIR)/prefixexp.o -o prefixexp.exe
+infixexp.exe:	$(OBJECT_DIR)/infixexp.o $(LIBS)
+	$(LINK) $(LFLAGS) $(OBJECT_DIR)/infixexp.o -o infixexp.exe
+calculator.exe:	$(OBJECT_DIR)/calculator.o $(LIBS)
+	$(LINK) $(LFLAGS) $(OBJECT_DIR)/calculator.o -o calculator.exe
 
 libstack.a:	
 #	$(AR) $(ARFLAGS) libstack.a $(OBJECT_DIR)/stack.o 
@@ -78,6 +83,10 @@ $(OBJECT_DIR)/postfixexp.o:		postfixexp.cpp stack.cpp
 	$(CC) $(CFLAGS) $(DEBUG) postfixexp.cpp -o $(OBJECT_DIR)/postfixexp.o
 $(OBJECT_DIR)/prefixexp.o:		prefixexp.cpp stack.cpp
 	$(CC) $(CFLAGS) $(DEBUG) prefixexp.cpp -o $(OBJECT_DIR)/prefixexp.o
+$(OBJECT_DIR)/infixexp.o:		infixexp.cpp stack.cpp
+	$(CC) $(CFLAGS) $(DEBUG) infixexp.cpp -o $(OBJECT_DIR)/infixexp.o
+$(OBJECT_DIR)/calculator.o:		calculator.cpp stack.cpp
+	$(CC) $(CFLAGS) $(DEBUG) calculator.cpp -o $(OBJECT_DIR)/calculator.o
 
 #$(OBJECT_DIR)/stack.o:	stack.cpp stack.h
 #	$(CC) $(CFLAGS) $(DEBUG) stack.cpp -o $(OBJECT_DIR)/stack.o
@@ -112,15 +121,19 @@ $(OBJECT_DIR)/trap.o:		trap.cpp trap.h
 
 clean:
 	rm -f stack.exe
+	rm -f calculator.exe
 	rm -f parencheck.exe
 	rm -f postfixexp.exe
 	rm -f prefixexp.exe
+	rm -f infixexp.exe
 	rm -f libstack.a
 	rm -f $(OBJECT_DIR)/stack.o
 	rm -f $(OBJECT_DIR)/main.o
+	rm -f $(OBJECT_DIR)/calculator.o
 	rm -f $(OBJECT_DIR)/parencheck.o
 	rm -f $(OBJECT_DIR)/postfixexp.o
 	rm -f $(OBJECT_DIR)/prefixexp.o
+	rm -f $(OBJECT_DIR)/infixexp.o
 	rm -f $(OBJECT_DIR)/trap.o
 	rm -f $(OBJECT_DIR)/test_pop.o
 	rm -f $(OBJECT_DIR)/test_push.o
