@@ -70,32 +70,18 @@ Stack<char> operators(10);
 
 /**
  * @brief     test for arithmetic op code
- * @fn        bool is_operator(char op)
+ * @fn        bool isOperator(char op) 
  * @param[in] op input operator
  * @return    true if op code found, false otherwise
  * @note
  */
-bool is_operator(char op) {
+bool isOperator(char op) {
   if (op == '+' || op == '-' || op == '/' || op == '*') {
     return true;
   }
 
   return false;
 }
-
-/**
- * @brief  	test for evaluate operator
- * @param	op
- * @return	true if evaluator, false otherwise
- */
-bool is_evaluate(char op) {
-  if (op == '=') {
-    return true;
-  }
-
-  return false;
-}
-
 
 /**
  * @brief     skip over any leading spaces
@@ -116,13 +102,13 @@ std::string IgnoreLeadingSpaces(const std::string &str) {
 
 /**
  * @brief     Execute the op code
- * @fn        int execute_op (int value1, int value2, char operand) {
+ * @fn        int OperandExecute(int value1, int value2, char operand) {
  * @param[in] value1 
  * @param[in] value2
- * @return    result of operator
+ * @return    true if op code found, false otherwise
  * @note
  */
-int execute_op(int value1, int value2, char operand) {
+int OperandExecute(int value1, int value2, char operand) {
   int result = 0;
 
   switch (operand) {
@@ -188,53 +174,46 @@ int main ( void ) {
      
      while (i < (int)commandline.length() && ErrorCode == 0)
      {
-    	 if (isdigit(commandline[i])) {
-    		 int value = 0;
+       //       cout << "parse " << i << " = " << commandline[i] << endl;
 
-    		 cout << "pos = " << i;
-    		 value = BuildInteger(commandline, &i);
-    		 cout << ",value = " << value << " pos = " << i << endl;
+       /*
+        * test for integer
+        */
+       if (isdigit(commandline[i])) {
+    	  int value = 0;
 
-    		 try {
-    			 operands.push(value);
-    		 }catch (std::runtime_error &e) {
-    			 cout << "Exception: " << e.what() << endl;
-    		 }
-    	 }
+    	  cout << "pos = " << i;
+    	  value = BuildInteger(commandline, &i);
+    	  cout << ",value = " << value << " pos = " << i << endl;
+    	  try {
+    		  operands.push(value);
+    	  }catch (std::runtime_error &e) {
+    		  cout << "Exception: " << e.what() << endl;
+    	  }
+       } else if (commandline[i] == '(') {
+    	   operators.push(commandline[i]);
+       } else if (commandline[i] == ')') {
+    	   while (!operators.isEmpty() && operators.peek() != '(') {
+    		   OperandExecute(operands.pop(), operands.pop(),operators.pop());
+    	   }
+       }
+               
+       /*
+        * halt the parser
+        */
+       if (std::tolower(commandline[0],loc) == 'q') {
+         running = false;
+       }
 
-    	 if (is_operator(commandline[i])) {
-    		 try {
-    			 operators.push(commandline[i]);
-    		 }catch (std::runtime_error &e) {
-    			 cout << "Exception: " << e.what() << endl;
-    		 }
-    	 }
+       /*
+	* dump the Stack
+	*/
+       if (std::tolower(commandline[0],loc) == 'd') {
+    	   operands.StackDump(0);
+    	   operators.StackDump(0);
+       }
 
-    	 if(is_evaluate(commandline[i])) {
-    		 int result;
-
-    		 result = execute_op(operands.pop(),
-    				    		 operands.pop(),
-								 operators.pop());
-			 cout << " " << result << endl;
-    	 }
-
-    	 /*
-    	  * halt the parser
-    	  */
-    	 if (std::tolower(commandline[0],loc) == 'q') {
-    		 running = false;
-    	 }
-
-    	 /*
-    	  * dump the Stack
-    	  */
-    	 if (std::tolower(commandline[0],loc) == 'd') {
-    		 operands.StackDump(0);
-    		 operators.StackDump(0);
-    	 }
-
-    	 i++;
+       i++;
      }
    }
    
