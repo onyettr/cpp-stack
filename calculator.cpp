@@ -175,8 +175,7 @@ int main ( void ) {
    std::string commandline;
    std::locale loc;
    bool running= true;
-   int ErrorCode = 0;
-   int i = 0;
+   int i;
    
    while (running) {
      i = 0;
@@ -186,14 +185,14 @@ int main ( void ) {
 
      cout << "Len = " << commandline.length() << endl;
      
-     while (i < (int)commandline.length() && ErrorCode == 0)
+     while (i < (int)commandline.length())
      {
     	 if (isdigit(commandline[i])) {
     		 int value = 0;
 
-    		 cout << "pos = " << i;
+    //		 cout << "pos = " << i;
     		 value = BuildInteger(commandline, &i);
-    		 cout << ",value = " << value << " pos = " << i << endl;
+    //		 cout << ",value = " << value << " pos = " << i << endl;
 
     		 try {
     			 operands.push(value);
